@@ -1,0 +1,228 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Navigation from '../components/Navigation.astro';
+---
+
+<BaseLayout title="Contact - Obsidian Peaks">
+  <Navigation />
+  
+  <main class="contact-page">
+    <div class="container">
+      <div class="glass-hero-text animate__zoomInDown">
+        <h1>Get in Touch</h1>
+        <p>Have questions? We'd love to hear from you. Send us a message and we'll respond as soon as possible.</p>
+      </div>
+      
+      <div class="contact-content">
+        <div class="contact-info animate__zoomInLeft">
+          <div class="glass-card">
+            <h2>Contact Information</h2>
+            <div class="contact-item">
+              <h3>📍 Location</h3>
+              <p>1234 Mountain View Drive<br>Obsidian Peaks, CO 80424</p>
+            </div>
+            
+            <div class="contact-item">
+              <h3>📞 Phone</h3>
+              <p>(555) 123-4567</p>
+            </div>
+            
+            <div class="contact-item">
+              <h3>✉️ Email</h3>
+              <p>info@obsidianpeaks.com</p>
+            </div>
+            
+            <div class="contact-item">
+              <h3>🕒 Hours</h3>
+              <p>Daily: 8:00 AM - 5:00 PM<br>Season: December - April</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="contact-form animate__zoomInRight">
+          <div class="glass-card">
+            <h2>Send us a Message</h2>
+            <form>
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="fname">First Name</label>
+                  <input type="text" id="fname" name="fname" required>
+                </div>
+                
+                <div class="form-group">
+                  <label for="lname">Last Name</label>
+                  <input type="text" id="lname" name="lname" required>
+                </div>
+              </div>
+              
+              <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+              </div>
+              
+              <div class="form-group">
+                <label for="subject">Subject</label>
+                <input type="text" id="subject" name="subject" required>
+              </div>
+              
+              <div class="form-group">
+                <label for="message">Message</label>
+                <textarea id="message" name="message" rows="6" required></textarea>
+              </div>
+              
+              <button type="submit" class="glass-button primary submit-btn">Send Message</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</BaseLayout>
+
+<style lang="scss">
+  @import '../styles/variables';
+  @import '../styles/glassmorphism';
+  
+  // Animations for contact page
+  .animate__zoomInDown {
+    animation: zoomInDown 0.6s;
+    animation-fill-mode: both;
+  }
+  
+  .animate__zoomInLeft {
+    animation: zoomInLeft 0.6s;
+    animation-fill-mode: both;
+  }
+  
+  .animate__zoomInRight {
+    animation: zoomInRight 0.6s;
+    animation-fill-mode: both;
+  }
+  
+  @keyframes zoomInDown {
+    from {
+      opacity: 0;
+      transform: scale3d(0.1, 0.1, 0.1) translate3d(0, -1000px, 0);
+      animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+    }
+    60% {
+      opacity: 1;
+      transform: scale3d(0.475, 0.475, 0.475) translate3d(0, 60px, 0);
+      animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1);
+    }
+  }
+  
+  @keyframes zoomInLeft {
+    from {
+      opacity: 0;
+      transform: scale3d(0.1, 0.1, 0.1) translate3d(-1000px, 0, 0);
+      animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+    }
+    60% {
+      opacity: 1;
+      transform: scale3d(0.475, 0.475, 0.475) translate3d(10px, 0, 0);
+      animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1);
+    }
+  }
+  
+  @keyframes zoomInRight {
+    from {
+      opacity: 0;
+      transform: scale3d(0.1, 0.1, 0.1) translate3d(1000px, 0, 0);
+      animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+    }
+    60% {
+      opacity: 1;
+      transform: scale3d(0.475, 0.475, 0.475) translate3d(-10px, 0, 0);
+      animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1);
+    }
+  }
+  
+  .contact-page {
+    min-height: 100vh;
+    padding: 120px $spacing-md $spacing-xxl;
+  }
+  
+  .container {
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+  
+  .contact-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: $spacing-xxl;
+    margin-top: $spacing-xl;
+    
+    @media (max-width: $tablet) {
+      grid-template-columns: 1fr;
+      gap: $spacing-xl;
+    }
+  }
+  
+  .glass-card h2 {
+    font-family: $font-display;
+    font-size: 1.5rem;
+    color: #222;
+    margin-bottom: $spacing-lg;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  
+  .contact-item {
+    margin-bottom: $spacing-lg;
+    
+    h3 {
+      font-weight: 600;
+      color: #333;
+      margin-bottom: $spacing-xs;
+      font-size: 1.1rem;
+    }
+    
+    p {
+      color: #555;
+      line-height: 1.6;
+    }
+  }
+  
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: $spacing-md;
+    
+    @media (max-width: $tablet) {
+      grid-template-columns: 1fr;
+      gap: $spacing-sm;
+    }
+  }
+  
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-xs;
+    margin-bottom: $spacing-md;
+  }
+  
+  label {
+    font-weight: 600;
+    color: #333;
+    font-size: 0.9rem;
+  }
+  
+  input, textarea {
+    @include glass-input;
+    padding: 15px 20px;
+    font-size: 1rem;
+    box-sizing: border-box;
+  }
+  
+  .submit-btn {
+    @include glass-button-enhanced;
+    width: 100%;
+    padding: 15px 30px;
+    font-size: 1.1rem;
+    margin-top: $spacing-md;
+    border: none;
+    border-radius: 12px;
+  }
+</style>

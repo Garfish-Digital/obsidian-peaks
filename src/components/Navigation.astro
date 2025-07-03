@@ -1,0 +1,155 @@
+---
+// Vertical right-side navigation component using glassmorphism design
+---
+
+<nav class="glass-nav animate__flipInY">
+  <div class="nav-container">
+    <a href="/" class="nav-logo">
+      <span class="logo-text">OP</span>
+    </a>
+    <div class="nav-links">
+      <a href="/" class="nav-link">Home</a>
+      <a href="/lessons" class="nav-link">Lessons</a>
+      <a href="/gear-rental" class="nav-link">Gear</a>
+      <a href="/about" class="nav-link">About</a>
+      <a href="/contact" class="nav-link">Contact</a>
+      <a href="/book-now" class="nav-link cta-link">Book</a>
+    </div>
+  </div>
+</nav>
+
+<style lang="scss">
+  @import '../styles/variables';
+  @import '../styles/glassmorphism';
+  
+  // Test animation to make sure it works
+  .animate__flipInY {
+    animation: flipInY 0.75s;
+    animation-fill-mode: both;
+  }
+  
+  @keyframes flipInY {
+    from {
+      transform: perspective(400px) rotate3d(0, 1, 0, 90deg);
+      animation-timing-function: ease-in;
+      opacity: 0;
+    }
+    40% {
+      transform: perspective(400px) rotate3d(0, 1, 0, -20deg);
+      animation-timing-function: ease-in;
+    }
+    60% {
+      transform: perspective(400px) rotate3d(0, 1, 0, 10deg);
+      opacity: 1;
+    }
+    80% {
+      transform: perspective(400px) rotate3d(0, 1, 0, -5deg);
+    }
+    to {
+      transform: perspective(400px);
+    }
+  }
+  
+  .nav-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: $spacing-lg $spacing-sm;
+    gap: $spacing-lg;
+  }
+  
+  .nav-logo {
+    text-decoration: none;
+    color: inherit;
+    transition: all $transition-fast;
+    
+    &:hover {
+      transform: scale(1.1);
+    }
+    
+    .logo-text {
+      font-family: $font-display;
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: rgba(255, 255, 255, 0.95);
+      letter-spacing: 2px;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.7));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+  }
+  
+  .nav-links {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: $spacing-md;
+    
+    @media (max-width: $desktop) {
+      gap: $spacing-sm;
+    }
+    
+    @media (max-width: $tablet) {
+      gap: $spacing-xs;
+    }
+    
+    @media (max-width: $mobile) {
+      gap: 6px;
+    }
+  }
+  
+  .nav-link {
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.9);
+    font-weight: 500;
+    font-size: 0.9rem;
+    transition: all $transition-fast;
+    padding: $spacing-sm $spacing-md;
+    border-radius: $radius-lg;
+    text-align: center;
+    min-width: 80px;
+    
+    &:hover {
+      color: rgba(255, 255, 255, 0.95);
+      background: rgba(255, 255, 255, 0.1);
+      box-shadow: 0 5px 15px rgba(255, 255, 255, 0.1);
+    }
+    
+    &.cta-link {
+      background: rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      color: rgba(255, 255, 255, 0.95);
+      font-weight: 600;
+      margin-top: $spacing-sm;
+      
+      &:hover {
+        background: rgba(255, 255, 255, 0.25);
+        border-color: rgba(255, 255, 255, 0.4);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+      }
+    }
+    
+    @media (max-width: $desktop) {
+      font-size: 0.85rem;
+      padding: $spacing-xs $spacing-sm;
+      min-width: 70px;
+    }
+    
+    @media (max-width: $tablet) {
+      font-size: 0.8rem;
+      padding: $spacing-xs;
+      min-width: 60px;
+    }
+    
+    @media (max-width: $mobile) {
+      font-size: 0.75rem;
+      padding: 6px 8px;
+      min-width: 50px;
+    }
+  }
+  
+</style>

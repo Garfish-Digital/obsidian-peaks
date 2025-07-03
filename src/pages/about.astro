@@ -1,0 +1,166 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Navigation from '../components/Navigation.astro';
+---
+
+<BaseLayout title="About Us - Obsidian Peaks">
+  <Navigation />
+  
+  <main class="about-page">
+    <div class="container">
+      <div class="glass-hero-text animate__zoomInDown">
+        <h1>About Obsidian Peaks</h1>
+        <p>Your premier destination for mountain adventures and winter sports excellence</p>
+      </div>
+      
+      <div class="about-content">
+        <div class="glass-card animate__zoomInLeft">
+          <h2>Our Story</h2>
+          <p>Founded in 1998, Obsidian Peaks has been providing exceptional mountain experiences for over 25 years. Located in the heart of the Rocky Mountains, we combine breathtaking natural beauty with world-class instruction and equipment.</p>
+          <p>Our team of certified instructors brings decades of experience and passion for winter sports. Whether you're taking your first turns or perfecting advanced techniques, we're here to help you achieve your mountain goals.</p>
+        </div>
+        
+        <div class="glass-card animate__zoomInRight">
+          <h2>Our Mission</h2>
+          <p>To provide safe, fun, and educational mountain experiences that inspire a lifelong love of winter sports while respecting and preserving our natural environment.</p>
+        </div>
+        
+        <div class="glass-card animate__zoomInUp">
+          <h2>What Makes Us Special</h2>
+          <ul>
+            <li>Certified professional instructors</li>
+            <li>Small class sizes for personalized attention</li>
+            <li>Top-quality rental equipment</li>
+            <li>Stunning mountain location</li>
+            <li>25+ years of experience</li>
+            <li>Commitment to safety and fun</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </main>
+</BaseLayout>
+
+<style lang="scss">
+  @import '../styles/variables';
+  @import '../styles/glassmorphism';
+  
+  // Animations for about page
+  .animate__zoomInDown {
+    animation: zoomInDown 0.6s;
+    animation-fill-mode: both;
+  }
+  
+  .animate__zoomInLeft {
+    animation: zoomInLeft 0.6s;
+    animation-fill-mode: both;
+  }
+  
+  .animate__zoomInRight {
+    animation: zoomInRight 0.6s;
+    animation-fill-mode: both;
+  }
+  
+  .animate__zoomInUp {
+    animation: zoomInUp 0.6s;
+    animation-fill-mode: both;
+  }
+  
+  @keyframes zoomInDown {
+    from {
+      opacity: 0;
+      transform: scale3d(0.1, 0.1, 0.1) translate3d(0, -1000px, 0);
+      animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+    }
+    60% {
+      opacity: 1;
+      transform: scale3d(0.475, 0.475, 0.475) translate3d(0, 60px, 0);
+      animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1);
+    }
+  }
+  
+  @keyframes zoomInLeft {
+    from {
+      opacity: 0;
+      transform: scale3d(0.1, 0.1, 0.1) translate3d(-1000px, 0, 0);
+      animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+    }
+    60% {
+      opacity: 1;
+      transform: scale3d(0.475, 0.475, 0.475) translate3d(10px, 0, 0);
+      animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1);
+    }
+  }
+  
+  @keyframes zoomInRight {
+    from {
+      opacity: 0;
+      transform: scale3d(0.1, 0.1, 0.1) translate3d(1000px, 0, 0);
+      animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+    }
+    60% {
+      opacity: 1;
+      transform: scale3d(0.475, 0.475, 0.475) translate3d(-10px, 0, 0);
+      animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1);
+    }
+  }
+  
+  @keyframes zoomInUp {
+    from {
+      opacity: 0;
+      transform: scale3d(0.1, 0.1, 0.1) translate3d(0, 1000px, 0);
+      animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+    }
+    60% {
+      opacity: 1;
+      transform: scale3d(0.475, 0.475, 0.475) translate3d(0, -60px, 0);
+      animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1);
+    }
+  }
+  
+  .about-page {
+    min-height: 100vh;
+    padding: 120px $spacing-md $spacing-xxl;
+  }
+  
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .about-content {
+    display: grid;
+    gap: $spacing-xl;
+    margin-top: $spacing-xl;
+  }
+  
+  .glass-card h2 {
+    font-family: $font-display;
+    font-size: 1.5rem;
+    color: #222;
+    margin-bottom: $spacing-md;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  
+  .glass-card p {
+    line-height: 1.7;
+    margin-bottom: $spacing-md;
+    color: #555;
+  }
+  
+  .glass-card ul {
+    list-style: none;
+    padding: 0;
+    
+    li {
+      padding: $spacing-sm 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+      
+      &:before {
+        content: '⭐';
+        margin-right: $spacing-sm;
+      }
+    }
+  }
+</style>

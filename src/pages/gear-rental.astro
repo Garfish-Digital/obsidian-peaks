@@ -1,0 +1,236 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Navigation from '../components/Navigation.astro';
+import Card from '../components/Card.astro';
+---
+
+<BaseLayout title="Gear Rental - Obsidian Peaks">
+  <Navigation />
+  
+  <main class="gear-rental-page">
+    <div class="container">
+      <div class="page-header animate__zoomInDown">
+        <h1>Gear Rental</h1>
+        <p>High-quality equipment for all skill levels. Everything you need for your mountain adventure.</p>
+      </div>
+      
+      <div class="rental-grid">
+        <Card title="Ski Package" variant="light" class="animate__zoomInLeft">
+          <p>Complete ski setup including skis, boots, poles, and helmet</p>
+          <p class="price">$45/day</p>
+          <a href="/book-now" class="glass-button primary">Reserve Now</a>
+        </Card>
+        
+        <Card title="Snowboard Package" variant="blue" class="animate__bounceIn">
+          <p>Snowboard, boots, and helmet for all riding styles</p>
+          <p class="price">$42/day</p>
+          <a href="/book-now" class="glass-button primary">Reserve Now</a>
+        </Card>
+        
+        <Card title="Premium Package" variant="orange" class="animate__zoomInRight">
+          <p>Top-of-the-line equipment for advanced riders</p>
+          <p class="price">$65/day</p>
+          <a href="/book-now" class="glass-button primary">Reserve Now</a>
+        </Card>
+      </div>
+      
+      <div class="rental-info animate__zoomInUp">
+        <div class="glass-card">
+          <h2>Rental Information</h2>
+          <ul>
+            <li>Multi-day discounts available</li>
+            <li>Equipment sizing and fitting included</li>
+            <li>Damage protection available</li>
+            <li>Free adjustments during rental period</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </main>
+</BaseLayout>
+
+<style lang="scss">
+  @import '../styles/variables';
+  @import '../styles/glassmorphism';
+  
+  // Animations for gear-rental page
+  .animate__zoomInDown {
+    animation: zoomInDown 0.6s;
+    animation-fill-mode: both;
+  }
+  
+  .animate__zoomInLeft {
+    animation: zoomInLeft 0.6s;
+    animation-fill-mode: both;
+  }
+  
+  .animate__zoomInRight {
+    animation: zoomInRight 0.6s;
+    animation-fill-mode: both;
+  }
+  
+  .animate__zoomInUp {
+    animation: zoomInUp 0.6s;
+    animation-fill-mode: both;
+  }
+  
+  .animate__bounceIn {
+    animation: bounceIn 0.75s;
+    animation-fill-mode: both;
+  }
+  
+  @keyframes zoomInDown {
+    from {
+      opacity: 0;
+      transform: scale3d(0.1, 0.1, 0.1) translate3d(0, -1000px, 0);
+      animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+    }
+    60% {
+      opacity: 1;
+      transform: scale3d(0.475, 0.475, 0.475) translate3d(0, 60px, 0);
+      animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1);
+    }
+  }
+  
+  @keyframes zoomInLeft {
+    from {
+      opacity: 0;
+      transform: scale3d(0.1, 0.1, 0.1) translate3d(-1000px, 0, 0);
+      animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+    }
+    60% {
+      opacity: 1;
+      transform: scale3d(0.475, 0.475, 0.475) translate3d(10px, 0, 0);
+      animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1);
+    }
+  }
+  
+  @keyframes zoomInRight {
+    from {
+      opacity: 0;
+      transform: scale3d(0.1, 0.1, 0.1) translate3d(1000px, 0, 0);
+      animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+    }
+    60% {
+      opacity: 1;
+      transform: scale3d(0.475, 0.475, 0.475) translate3d(-10px, 0, 0);
+      animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1);
+    }
+  }
+  
+  @keyframes zoomInUp {
+    from {
+      opacity: 0;
+      transform: scale3d(0.1, 0.1, 0.1) translate3d(0, 1000px, 0);
+      animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+    }
+    60% {
+      opacity: 1;
+      transform: scale3d(0.475, 0.475, 0.475) translate3d(0, -60px, 0);
+      animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1);
+    }
+  }
+  
+  @keyframes bounceIn {
+    from, 20%, 40%, 60%, 80%, to {
+      animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+    }
+    0% {
+      opacity: 0;
+      transform: scale3d(0.3, 0.3, 0.3);
+    }
+    20% {
+      transform: scale3d(1.1, 1.1, 1.1);
+    }
+    40% {
+      transform: scale3d(0.9, 0.9, 0.9);
+    }
+    60% {
+      opacity: 1;
+      transform: scale3d(1.03, 1.03, 1.03);
+    }
+    80% {
+      transform: scale3d(0.97, 0.97, 0.97);
+    }
+    to {
+      opacity: 1;
+      transform: scale3d(1, 1, 1);
+    }
+  }
+  
+  .gear-rental-page {
+    min-height: 100vh;
+    padding: 120px $spacing-md $spacing-xxl;
+  }
+  
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .page-header {
+    text-align: center;
+    margin-bottom: $spacing-xxl;
+    
+    h1 {
+      font-family: $font-display;
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      color: #222;
+      margin-bottom: $spacing-md;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    
+    p {
+      font-size: 1.2rem;
+      color: #555;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+  }
+  
+  .rental-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: $spacing-xl;
+    margin-bottom: $spacing-xxl;
+  }
+  
+  .price {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: $sunset-orange;
+    margin: $spacing-md 0;
+  }
+  
+  .rental-info {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  .glass-card h2 {
+    font-family: $font-display;
+    font-size: 1.5rem;
+    color: #222;
+    margin-bottom: $spacing-md;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  
+  .glass-card ul {
+    list-style: none;
+    padding: 0;
+    
+    li {
+      padding: $spacing-sm 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+      
+      &:before {
+        content: '✓';
+        color: $powder-blue;
+        font-weight: bold;
+        margin-right: $spacing-sm;
+      }
+    }
+  }
+</style>

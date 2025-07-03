@@ -1,0 +1,83 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Navigation from '../../components/Navigation.astro';
+---
+
+<BaseLayout title="Intermediate Lessons - Obsidian Peaks">
+  <Navigation />
+  
+  <main class="lesson-page">
+    <div class="container">
+      <div class="glass-hero-text">
+        <h1>Intermediate Lessons</h1>
+        <p>Build confidence and refine your technique on more challenging terrain</p>
+      </div>
+      
+      <div class="lesson-content">
+        <div class="glass-card">
+          <h2>What You'll Learn</h2>
+          <ul>
+            <li>Advanced turning techniques and carving</li>
+            <li>Navigating varied terrain and conditions</li>
+            <li>Speed control and confidence building</li>
+            <li>Introduction to off-piste skiing</li>
+          </ul>
+        </div>
+        
+        <div class="glass-card">
+          <h2>Lesson Details</h2>
+          <p><strong>Duration:</strong> 3 hours</p>
+          <p><strong>Group Size:</strong> Maximum 4 students</p>
+          <p><strong>Prerequisites:</strong> Can link turns and stop confidently</p>
+          <p><strong>Price:</strong> $95 per person</p>
+          <a href="/book-now" class="glass-button primary">Book Now</a>
+        </div>
+      </div>
+    </div>
+  </main>
+</BaseLayout>
+
+<style lang="scss">
+  @import '../../styles/variables';
+  @import '../../styles/glassmorphism';
+  
+  .lesson-page {
+    min-height: 100vh;
+    padding: 120px $spacing-md $spacing-xxl;
+  }
+  
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .lesson-content {
+    display: grid;
+    gap: $spacing-xl;
+    margin-top: $spacing-xl;
+  }
+  
+  .glass-card h2 {
+    font-family: $font-display;
+    font-size: 1.5rem;
+    color: #222;
+    margin-bottom: $spacing-md;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  
+  .glass-card ul {
+    list-style: none;
+    padding: 0;
+    
+    li {
+      padding: $spacing-xs 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+      
+      &:before {
+        content: '🏔️';
+        margin-right: $spacing-sm;
+      }
+    }
+  }
+</style>

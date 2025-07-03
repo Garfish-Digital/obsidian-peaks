@@ -1,0 +1,46 @@
+---
+// Reusable card component with glassmorphism effect
+export interface Props {
+  title?: string;
+  variant?: 'light' | 'medium' | 'dark' | 'blue' | 'orange';
+  class?: string;
+}
+
+const { title, variant = 'light', class: className = '' } = Astro.props;
+const cardClass = `glass-card card-${variant} ${className}`;
+---
+
+<div class={cardClass}>
+  {title && <h3 class="card-title">{title}</h3>}
+  <slot />
+</div>
+
+<style lang="scss">
+  @import '../styles/variables';
+  @import '../styles/glassmorphism';
+  
+  .card-medium {
+    @include glass-medium;
+  }
+  
+  .card-dark {
+    @include glass-dark;
+  }
+  
+  .card-blue {
+    @include glass-accent-blue;
+  }
+  
+  .card-orange {
+    @include glass-accent-orange;
+  }
+  
+  .card-title {
+    font-family: $font-display;
+    font-size: 1.25rem;
+    color: #222;
+    margin-bottom: $spacing-md;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+</style>

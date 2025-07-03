@@ -1,0 +1,39 @@
+// Color Variables
+$white: #FFFFFF;
+$soft-snow: #FAFAFA;
+$powder-blue: #87CEEB;
+$sunset-orange: #FF6B35;
+
+// Typography
+$font-primary: 'Inter Tight', system-ui, sans-serif;
+$font-display: 'Bebas Neue', cursive;
+
+// Spacing
+$spacing-xs: 0.5rem;
+$spacing-sm: 1rem;
+$spacing-md: 1.5rem;
+$spacing-lg: 2rem;
+$spacing-xl: 3rem;
+$spacing-xxl: 4rem;
+
+// Border Radius
+$radius-sm: 8px;
+$radius-md: 12px;
+$radius-lg: 16px;
+$radius-xl: 24px;
+
+// Shadows
+$shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.1);
+$shadow-md: 0 4px 16px rgba(0, 0, 0, 0.1);
+$shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.15);
+
+// Transitions
+$transition-fast: 0.2s ease-out;
+$transition-medium: 0.3s ease-out;
+$transition-slow: 0.5s ease-out;
+
+// Breakpoints
+$mobile: 480px;
+$tablet: 768px;
+$desktop: 1024px;
+$wide: 1280px;

@@ -1,0 +1,149 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Navigation from '../components/Navigation.astro';
+import Card from '../components/Card.astro';
+---
+
+<BaseLayout title="Lessons - Obsidian Peaks">
+  <Navigation />
+  
+  <main class="lessons-page">
+    <div class="container">
+      <div class="page-header animate__zoomInDown">
+        <h1>Skiing & Snowboarding Lessons</h1>
+        <p>Learn from certified instructors in the beautiful mountain setting of Obsidian Peaks</p>
+      </div>
+      
+      <div class="lessons-grid">
+        <Card title="Beginner Lessons" variant="light" class="animate__zoomInLeft">
+          <p>Perfect for first-time skiers and snowboarders. Learn the basics in a safe, supportive environment.</p>
+          <a href="/lessons/beginner" class="glass-button primary">Learn More</a>
+        </Card>
+        
+        <Card title="Intermediate Lessons" variant="blue" class="animate__zoomInUp">
+          <p>Ready to take your skills to the next level? Improve technique and build confidence on varied terrain.</p>
+          <a href="/lessons/intermediate" class="glass-button primary">Learn More</a>
+        </Card>
+        
+        <Card title="Advanced Lessons" variant="orange" class="animate__zoomInRight">
+          <p>Master challenging slopes and advanced techniques with our expert instructors.</p>
+          <a href="/lessons/advanced" class="glass-button primary">Learn More</a>
+        </Card>
+      </div>
+    </div>
+  </main>
+</BaseLayout>
+
+<style lang="scss">
+  @import '../styles/variables';
+  
+  // Animations for lessons page
+  .animate__zoomInDown {
+    animation: zoomInDown 0.6s;
+    animation-fill-mode: both;
+  }
+  
+  .animate__zoomInLeft {
+    animation: zoomInLeft 0.6s;
+    animation-fill-mode: both;
+  }
+  
+  .animate__zoomInUp {
+    animation: zoomInUp 0.6s;
+    animation-fill-mode: both;
+  }
+  
+  .animate__zoomInRight {
+    animation: zoomInRight 0.6s;
+    animation-fill-mode: both;
+  }
+  
+  @keyframes zoomInDown {
+    from {
+      opacity: 0;
+      transform: scale3d(0.1, 0.1, 0.1) translate3d(0, -1000px, 0);
+      animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+    }
+    60% {
+      opacity: 1;
+      transform: scale3d(0.475, 0.475, 0.475) translate3d(0, 60px, 0);
+      animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1);
+    }
+  }
+  
+  @keyframes zoomInLeft {
+    from {
+      opacity: 0;
+      transform: scale3d(0.1, 0.1, 0.1) translate3d(-1000px, 0, 0);
+      animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+    }
+    60% {
+      opacity: 1;
+      transform: scale3d(0.475, 0.475, 0.475) translate3d(10px, 0, 0);
+      animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1);
+    }
+  }
+  
+  @keyframes zoomInRight {
+    from {
+      opacity: 0;
+      transform: scale3d(0.1, 0.1, 0.1) translate3d(1000px, 0, 0);
+      animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+    }
+    60% {
+      opacity: 1;
+      transform: scale3d(0.475, 0.475, 0.475) translate3d(-10px, 0, 0);
+      animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1);
+    }
+  }
+  
+  @keyframes zoomInUp {
+    from {
+      opacity: 0;
+      transform: scale3d(0.1, 0.1, 0.1) translate3d(0, 1000px, 0);
+      animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+    }
+    60% {
+      opacity: 1;
+      transform: scale3d(0.475, 0.475, 0.475) translate3d(0, -60px, 0);
+      animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1);
+    }
+  }
+  
+  .lessons-page {
+    min-height: 100vh;
+    padding: 120px $spacing-md $spacing-xxl;
+  }
+  
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .page-header {
+    text-align: center;
+    margin-bottom: $spacing-xxl;
+    
+    h1 {
+      font-family: $font-display;
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      color: #222;
+      margin-bottom: $spacing-md;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    
+    p {
+      font-size: 1.2rem;
+      color: #555;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+  }
+  
+  .lessons-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: $spacing-xl;
+  }
+</style>

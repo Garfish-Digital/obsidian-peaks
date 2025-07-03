@@ -1,0 +1,83 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Navigation from '../../components/Navigation.astro';
+---
+
+<BaseLayout title="Advanced Lessons - Obsidian Peaks">
+  <Navigation />
+  
+  <main class="lesson-page">
+    <div class="container">
+      <div class="glass-hero-text">
+        <h1>Advanced Lessons</h1>
+        <p>Master expert terrain and advanced techniques with our top instructors</p>
+      </div>
+      
+      <div class="lesson-content">
+        <div class="glass-card">
+          <h2>What You'll Learn</h2>
+          <ul>
+            <li>Expert terrain navigation and safety</li>
+            <li>Advanced carving and racing techniques</li>
+            <li>Backcountry skiing fundamentals</li>
+            <li>Freestyle and park skills</li>
+          </ul>
+        </div>
+        
+        <div class="glass-card">
+          <h2>Lesson Details</h2>
+          <p><strong>Duration:</strong> 4 hours</p>
+          <p><strong>Group Size:</strong> Maximum 3 students</p>
+          <p><strong>Prerequisites:</strong> Comfortable on black diamond runs</p>
+          <p><strong>Price:</strong> $125 per person</p>
+          <a href="/book-now" class="glass-button primary">Book Now</a>
+        </div>
+      </div>
+    </div>
+  </main>
+</BaseLayout>
+
+<style lang="scss">
+  @import '../../styles/variables';
+  @import '../../styles/glassmorphism';
+  
+  .lesson-page {
+    min-height: 100vh;
+    padding: 120px $spacing-md $spacing-xxl;
+  }
+  
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .lesson-content {
+    display: grid;
+    gap: $spacing-xl;
+    margin-top: $spacing-xl;
+  }
+  
+  .glass-card h2 {
+    font-family: $font-display;
+    font-size: 1.5rem;
+    color: #222;
+    margin-bottom: $spacing-md;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  
+  .glass-card ul {
+    list-style: none;
+    padding: 0;
+    
+    li {
+      padding: $spacing-xs 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+      
+      &:before {
+        content: '🎿';
+        margin-right: $spacing-sm;
+      }
+    }
+  }
+</style>

@@ -1,0 +1,126 @@
+---
+export interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description = "A glassmorphism-inspired website with mountain peaks aesthetics" } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+  </head>
+  <body>
+    <!-- Animated background orbs -->
+    <div class="bg-orb orb-1"></div>
+    <div class="bg-orb orb-2"></div>
+    <div class="bg-orb orb-3"></div>
+    <div class="bg-orb orb-4"></div>
+
+    <!-- Floating glass elements -->
+    <div class="floating-element float-1"></div>
+    <div class="floating-element float-2"></div>
+    <div class="floating-element float-3"></div>
+
+    <!-- Cursor glow effect -->
+    <div class="cursor-glow"></div>
+
+    <slot />
+    
+    <style lang="scss">
+      @import '../styles/main.scss';
+    </style>
+
+    <script>
+      // Cursor glow effect
+      const cursorGlow = document.querySelector('.cursor-glow');
+      
+      if (cursorGlow) {
+        document.addEventListener('mousemove', (e) => {
+          cursorGlow.style.transform = `translate(${e.clientX - 100}px, ${e.clientY - 100}px)`;
+        });
+      }
+
+      // Enhanced hover effects for glass elements (excluding navigation)
+      const glassElements = document.querySelectorAll('.glass-card:not(.glass-nav *), .glass-button:not(.nav-link), input, select, textarea');
+      
+      glassElements.forEach(element => {
+        element.addEventListener('mouseenter', () => {
+          element.style.boxShadow = '0 15px 35px rgba(255, 255, 255, 0.1)';
+        });
+        
+        element.addEventListener('mouseleave', () => {
+          if (!element.matches(':focus')) {
+            element.style.boxShadow = '';
+          }
+        });
+      });
+
+      // Parallax effect for floating elements
+      document.addEventListener('mousemove', (e) => {
+        const floatingElements = document.querySelectorAll('.floating-element');
+        const mouseX = e.clientX / window.innerWidth;
+        const mouseY = e.clientY / window.innerHeight;
+        
+        floatingElements.forEach((element, index) => {
+          const speed = (index + 1) * 2;
+          const x = mouseX * speed;
+          const y = mouseY * speed;
+          
+          // Reset transform before applying new one to prevent accumulation
+          element.style.transform = `translate(${x}px, ${y}px)`;
+        });
+      });
+
+      // Dynamic background color shift
+      let hue = 240;
+      setInterval(() => {
+        hue = (hue + 0.5) % 360;
+        document.body.style.background = `linear-gradient(135deg, hsl(${hue}, 70%, 65%) 0%, hsl(${hue + 40}, 60%, 55%) 100%)`;
+      }, 100);
+
+      // Glassmorphism intensity based on scroll
+      window.addEventListener('scroll', () => {
+        const scrolled = window.pageYOffset;
+        const glassCards = document.querySelectorAll('.glass-card');
+        
+        glassCards.forEach(card => {
+          const opacity = Math.max(0.1, 0.15 - scrolled * 0.0001);
+          card.style.background = `rgba(255, 255, 255, ${opacity})`;
+        });
+      });
+
+      // Form submission animations
+      const forms = document.querySelectorAll('form');
+      forms.forEach(form => {
+        form.addEventListener('submit', (e) => {
+          const submitBtn = form.querySelector('button[type="submit"], .glass-button');
+          if (submitBtn) {
+            submitBtn.style.background = 'rgba(255, 255, 255, 0.3)';
+            submitBtn.style.transform = 'translateY(0)';
+            
+            const originalText = submitBtn.textContent;
+            submitBtn.textContent = 'Processing...';
+            
+            setTimeout(() => {
+              submitBtn.textContent = 'Success!';
+              submitBtn.style.background = 'rgba(76, 175, 80, 0.3)';
+              
+              setTimeout(() => {
+                submitBtn.textContent = originalText;
+                submitBtn.style.background = '';
+              }, 2000);
+            }, 1500);
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
