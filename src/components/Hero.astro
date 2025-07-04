@@ -58,16 +58,35 @@ const {
   .hero {
     min-height: 100vh;
     display: flex;
-    align-items: center;
-    justify-content: center;
+    align-items: flex-end;
+    justify-content: flex-start;
     padding: $spacing-xl $spacing-md;
     position: relative;
+    
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-image: url('/images/istockphoto-1358217175-1024x1024.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      filter: grayscale(100%);
+      opacity: 0.1;
+      z-index: -1;
+      pointer-events: none;
+    }
   }
   
   .hero-content {
     width: 100%;
-    max-width: 800px;
-    margin: 0 auto;
+    max-width: 600px;
+    margin: 0;
+    padding-bottom: calc(38vh - 15vh); // Golden ratio positioning adjusted down 15vh  
+    padding-left: 10vw; // Move right 10vw
   }
   
   .hero-title {

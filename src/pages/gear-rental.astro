@@ -1,7 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Navigation from '../components/Navigation.astro';
-import Card from '../components/Card.astro';
 ---
 
 <BaseLayout title="Gear Rental - Obsidian Peaks">
@@ -15,23 +14,26 @@ import Card from '../components/Card.astro';
       </div>
       
       <div class="rental-grid">
-        <Card title="Ski Package" variant="light" class="animate__zoomInLeft">
+        <div class="glass-card card-light animate__zoomInLeft">
+          <h3 class="card-title">Ski Package</h3>
           <p>Complete ski setup including skis, boots, poles, and helmet</p>
           <p class="price">$45/day</p>
           <a href="/book-now" class="glass-button primary">Reserve Now</a>
-        </Card>
+        </div>
         
-        <Card title="Snowboard Package" variant="blue" class="animate__bounceIn">
+        <div class="glass-card card-blue animate__bounceIn">
+          <h3 class="card-title">Snowboard Package</h3>
           <p>Snowboard, boots, and helmet for all riding styles</p>
           <p class="price">$42/day</p>
           <a href="/book-now" class="glass-button primary">Reserve Now</a>
-        </Card>
+        </div>
         
-        <Card title="Premium Package" variant="orange" class="animate__zoomInRight">
+        <div class="glass-card card-orange animate__zoomInRight">
+          <h3 class="card-title">Premium Package</h3>
           <p>Top-of-the-line equipment for advanced riders</p>
           <p class="price">$65/day</p>
           <a href="/book-now" class="glass-button primary">Reserve Now</a>
-        </Card>
+        </div>
       </div>
       
       <div class="rental-info animate__zoomInUp">
@@ -206,6 +208,23 @@ import Card from '../components/Card.astro';
   .rental-info {
     max-width: 600px;
     margin: 0 auto;
+  }
+  
+  .card-blue {
+    @include glass-accent-blue;
+  }
+  
+  .card-orange {
+    @include glass-accent-orange;
+  }
+  
+  .card-title {
+    font-family: $font-display;
+    font-size: 1.25rem;
+    color: #222;
+    margin-bottom: $spacing-md;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
   }
   
   .glass-card h2 {

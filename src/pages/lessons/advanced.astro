@@ -8,14 +8,14 @@ import Navigation from '../../components/Navigation.astro';
   
   <main class="lesson-page">
     <div class="container">
-      <div class="glass-hero-text">
+      <div class="glass-hero-text animate__zoomInDown">
         <h1>Advanced Lessons</h1>
         <p>Master expert terrain and advanced techniques with our top instructors</p>
       </div>
       
       <div class="lesson-content">
-        <div class="glass-card">
-          <h2>What You'll Learn</h2>
+        <div class="glass-card card-light animate__zoomInLeft">
+          <h3 class="card-title">What You'll Learn</h3>
           <ul>
             <li>Expert terrain navigation and safety</li>
             <li>Advanced carving and racing techniques</li>
@@ -24,8 +24,8 @@ import Navigation from '../../components/Navigation.astro';
           </ul>
         </div>
         
-        <div class="glass-card">
-          <h2>Lesson Details</h2>
+        <div class="glass-card card-orange animate__zoomInRight">
+          <h3 class="card-title">Lesson Details</h3>
           <p><strong>Duration:</strong> 4 hours</p>
           <p><strong>Group Size:</strong> Maximum 3 students</p>
           <p><strong>Prerequisites:</strong> Comfortable on black diamond runs</p>
@@ -41,6 +41,93 @@ import Navigation from '../../components/Navigation.astro';
   @import '../../styles/variables';
   @import '../../styles/glassmorphism';
   
+  // Animations for lesson page
+  .animate__zoomInLeft {
+    animation: zoomInLeft 0.6s;
+    animation-fill-mode: both;
+  }
+  
+  .animate__zoomInRight {
+    animation: zoomInRight 0.6s;
+    animation-fill-mode: both;
+  }
+  
+  .animate__bounceIn {
+    animation: bounceIn 0.75s;
+    animation-fill-mode: both;
+  }
+  
+  .animate__zoomInDown {
+    animation: zoomInDown 0.6s;
+    animation-fill-mode: both;
+  }
+  
+  @keyframes zoomInLeft {
+    from {
+      opacity: 0;
+      transform: scale3d(0.1, 0.1, 0.1) translate3d(-1000px, 0, 0);
+      animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+    }
+    60% {
+      opacity: 1;
+      transform: scale3d(0.475, 0.475, 0.475) translate3d(10px, 0, 0);
+      animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1);
+    }
+  }
+  
+  @keyframes zoomInRight {
+    from {
+      opacity: 0;
+      transform: scale3d(0.1, 0.1, 0.1) translate3d(1000px, 0, 0);
+      animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+    }
+    60% {
+      opacity: 1;
+      transform: scale3d(0.475, 0.475, 0.475) translate3d(-10px, 0, 0);
+      animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1);
+    }
+  }
+  
+  @keyframes bounceIn {
+    from, 20%, 40%, 60%, 80%, to {
+      animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+    }
+    0% {
+      opacity: 0;
+      transform: scale3d(0.3, 0.3, 0.3);
+    }
+    20% {
+      transform: scale3d(1.1, 1.1, 1.1);
+    }
+    40% {
+      transform: scale3d(0.9, 0.9, 0.9);
+    }
+    60% {
+      opacity: 1;
+      transform: scale3d(1.03, 1.03, 1.03);
+    }
+    80% {
+      transform: scale3d(0.97, 0.97, 0.97);
+    }
+    to {
+      opacity: 1;
+      transform: scale3d(1, 1, 1);
+    }
+  }
+  
+  @keyframes zoomInDown {
+    from {
+      opacity: 0;
+      transform: scale3d(0.1, 0.1, 0.1) translate3d(0, -1000px, 0);
+      animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+    }
+    60% {
+      opacity: 1;
+      transform: scale3d(0.475, 0.475, 0.475) translate3d(0, 60px, 0);
+      animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1);
+    }
+  }
+  
   .lesson-page {
     min-height: 100vh;
     padding: 120px $spacing-md $spacing-xxl;
@@ -51,22 +138,26 @@ import Navigation from '../../components/Navigation.astro';
     margin: 0 auto;
   }
   
+  .card-orange {
+    @include glass-accent-orange;
+  }
+  
+  .card-title {
+    font-family: $font-display;
+    font-size: 1.25rem;
+    color: #222;
+    margin-bottom: $spacing-md;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+  
   .lesson-content {
     display: grid;
     gap: $spacing-xl;
     margin-top: $spacing-xl;
   }
   
-  .glass-card h2 {
-    font-family: $font-display;
-    font-size: 1.5rem;
-    color: #222;
-    margin-bottom: $spacing-md;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-  }
-  
-  .glass-card ul {
+  ul {
     list-style: none;
     padding: 0;
     

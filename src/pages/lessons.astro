@@ -1,7 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Navigation from '../components/Navigation.astro';
-import Card from '../components/Card.astro';
 ---
 
 <BaseLayout title="Lessons - Obsidian Peaks">
@@ -15,20 +14,23 @@ import Card from '../components/Card.astro';
       </div>
       
       <div class="lessons-grid">
-        <Card title="Beginner Lessons" variant="light" class="animate__zoomInLeft">
+        <div class="glass-card card-light animate__zoomInLeft">
+          <h3 class="card-title">Beginner Lessons</h3>
           <p>Perfect for first-time skiers and snowboarders. Learn the basics in a safe, supportive environment.</p>
           <a href="/lessons/beginner" class="glass-button primary">Learn More</a>
-        </Card>
+        </div>
         
-        <Card title="Intermediate Lessons" variant="blue" class="animate__zoomInUp">
+        <div class="glass-card card-blue animate__bounceIn">
+          <h3 class="card-title">Intermediate Lessons</h3>
           <p>Ready to take your skills to the next level? Improve technique and build confidence on varied terrain.</p>
           <a href="/lessons/intermediate" class="glass-button primary">Learn More</a>
-        </Card>
+        </div>
         
-        <Card title="Advanced Lessons" variant="orange" class="animate__zoomInRight">
+        <div class="glass-card card-orange animate__zoomInRight">
+          <h3 class="card-title">Advanced Lessons</h3>
           <p>Master challenging slopes and advanced techniques with our expert instructors.</p>
           <a href="/lessons/advanced" class="glass-button primary">Learn More</a>
-        </Card>
+        </div>
       </div>
     </div>
   </main>
@@ -36,6 +38,7 @@ import Card from '../components/Card.astro';
 
 <style lang="scss">
   @import '../styles/variables';
+  @import '../styles/glassmorphism';
   
   // Animations for lessons page
   .animate__zoomInDown {
@@ -48,8 +51,8 @@ import Card from '../components/Card.astro';
     animation-fill-mode: both;
   }
   
-  .animate__zoomInUp {
-    animation: zoomInUp 0.6s;
+  .animate__bounceIn {
+    animation: bounceIn 0.75s;
     animation-fill-mode: both;
   }
   
@@ -69,6 +72,10 @@ import Card from '../components/Card.astro';
       transform: scale3d(0.475, 0.475, 0.475) translate3d(0, 60px, 0);
       animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1);
     }
+    to {
+      opacity: 1;
+      transform: scale3d(1, 1, 1) translate3d(0, 0, 0);
+    }
   }
   
   @keyframes zoomInLeft {
@@ -81,6 +88,10 @@ import Card from '../components/Card.astro';
       opacity: 1;
       transform: scale3d(0.475, 0.475, 0.475) translate3d(10px, 0, 0);
       animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1);
+    }
+    to {
+      opacity: 1;
+      transform: scale3d(1, 1, 1) translate3d(0, 0, 0);
     }
   }
   
@@ -95,18 +106,36 @@ import Card from '../components/Card.astro';
       transform: scale3d(0.475, 0.475, 0.475) translate3d(-10px, 0, 0);
       animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1);
     }
+    to {
+      opacity: 1;
+      transform: scale3d(1, 1, 1) translate3d(0, 0, 0);
+    }
   }
   
-  @keyframes zoomInUp {
-    from {
+  @keyframes bounceIn {
+    from, 20%, 40%, 60%, 80%, to {
+      animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+    }
+    0% {
       opacity: 0;
-      transform: scale3d(0.1, 0.1, 0.1) translate3d(0, 1000px, 0);
-      animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+      transform: scale3d(0.3, 0.3, 0.3);
+    }
+    20% {
+      transform: scale3d(1.1, 1.1, 1.1);
+    }
+    40% {
+      transform: scale3d(0.9, 0.9, 0.9);
     }
     60% {
       opacity: 1;
-      transform: scale3d(0.475, 0.475, 0.475) translate3d(0, -60px, 0);
-      animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1);
+      transform: scale3d(1.03, 1.03, 1.03);
+    }
+    80% {
+      transform: scale3d(0.97, 0.97, 0.97);
+    }
+    to {
+      opacity: 1;
+      transform: scale3d(1, 1, 1);
     }
   }
   
@@ -139,6 +168,23 @@ import Card from '../components/Card.astro';
       max-width: 600px;
       margin: 0 auto;
     }
+  }
+  
+  .card-blue {
+    @include glass-accent-blue;
+  }
+  
+  .card-orange {
+    @include glass-accent-orange;
+  }
+  
+  .card-title {
+    font-family: $font-display;
+    font-size: 1.25rem;
+    color: #222;
+    margin-bottom: $spacing-md;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
   }
   
   .lessons-grid {
