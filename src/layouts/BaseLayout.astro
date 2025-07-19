@@ -15,19 +15,20 @@ const { title, description = "A glassmorphism-inspired website with mountain pea
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
     <meta name="generator" content={Astro.generator} />
+    <meta name="robots" content="noindex, nofollow" />
     <title>{title}</title>
   </head>
   <body>
     <!-- Animated background orbs -->
-    <div class="bg-orb orb-1"></div>
+    <!-- <div class="bg-orb orb-1"></div>
     <div class="bg-orb orb-2"></div>
     <div class="bg-orb orb-3"></div>
-    <div class="bg-orb orb-4"></div>
+    <div class="bg-orb orb-4"></div> -->
 
     <!-- Floating glass elements -->
-    <div class="floating-element float-1"></div>
+    <!-- <div class="floating-element float-1"></div>
     <div class="floating-element float-2"></div>
-    <div class="floating-element float-3"></div>
+    <div class="floating-element float-3"></div> -->
 
     <!-- Cursor glow effect -->
     <div class="cursor-glow"></div>
@@ -39,7 +40,7 @@ const { title, description = "A glassmorphism-inspired website with mountain pea
       
       // Initial background to prevent flash
       body {
-        background: linear-gradient(135deg, hsl(240, 35%, 78%) 0%, hsl(280, 30%, 74%) 100%);
+        // background: linear-gradient(135deg, hsl(240, 35%, 78%) 0%, hsl(280, 30%, 74%) 100%);
       }
     </style>
 
@@ -88,13 +89,13 @@ const { title, description = "A glassmorphism-inspired website with mountain pea
       let hue = 240;
       
       // Set initial background immediately
-      document.body.style.background = `linear-gradient(135deg, hsl(${hue}, 35%, 78%) 0%, hsl(${hue + 40}, 30%, 74%) 100%)`;
+    //   document.body.style.background = `linear-gradient(135deg, hsl(${hue}, 35%, 78%) 0%, hsl(${hue + 40}, 30%, 74%) 100%)`;
       
       // Continue animation
-      setInterval(() => {
-        hue = (hue + 0.5) % 360;
-        document.body.style.background = `linear-gradient(135deg, hsl(${hue}, 35%, 78%) 0%, hsl(${hue + 40}, 30%, 74%) 100%)`;
-      }, 100);
+    //   setInterval(() => {
+    //     hue = (hue + 0.5) % 360;
+    //     document.body.style.background = `linear-gradient(135deg, hsl(${hue}, 35%, 78%) 0%, hsl(${hue + 40}, 30%, 74%) 100%)`;
+    //   }, 100);
 
       // Glassmorphism intensity based on scroll
       window.addEventListener('scroll', () => {

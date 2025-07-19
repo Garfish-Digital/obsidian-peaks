@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Layered Navigation</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+            align-items: center;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            background: url('https://plus.unsplash.com/premium_photo-1661333661270-bd5fcaf46e24?q=80&w=1738&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') center/cover no-repeat;
+            filter: grayscale(100) opacity(0.2);
+            pointer-events: none;
+        }
+
+        .nav-container {
+            position: relative;
+            width: 80vw;
+            height: 10vh;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+        }
+
+        .nav-container:hover .rect1::before {
+            animation: rect1Shimmer 1s ease-out forwards;
+        }
+
+        .nav-container:hover .rect2::before {
+            animation: rect2Shimmer .4s ease-out 1.5s forwards;
+        }
+
+        .rect1 {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(ellipse at center,
+                    rgb(147, 197, 253, .65) 0%,
+                    rgb(100, 160, 250, .65) 60%,
+                    rgb(59, 130, 246, .65) 100%
+            );
+            border-radius: 15px;
+            z-index: 1;
+            box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.3),
+                inset 0 0 20px rgba(255, 255, 255, 0.2),
+                inset 0 0 30px rgba(255, 255, 255, 0.1),
+                0 0 20px rgba(0, 0, 0, 0.4);
+            overflow: hidden;
+        }
+
+        .rect2 {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 1.5vh;
+            margin-left: 4vw;
+            width: 90%;
+            height: 70%;
+            background: radial-gradient(ellipse at center,
+                    rgb(59, 130, 246, .5) 0%,
+                    rgb(100, 160, 250, .5) 75%,
+                    rgb(147, 197, 253, .5) 100%
+                );
+            border-radius: 60px 60px / 20px 20px;
+            z-index: 2;
+            overflow: hidden;
+        }
+
+        nav {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            align-items: center;
+            justify-content: space-evenly;
+            width: 100%;
+            height: 100%;
+        }
+
+        nav a {
+            color: rgb(100, 160, 250, .65);
+            font-size: 1.25rem;
+            text-decoration: none;
+             text-shadow:
+        -1px -1px 1px rgba(0, 0, 0, 0.5),
+        1px 1px 1px rgba(255, 255, 255, 0.2),
+        0 0 4px rgba(255, 255, 255, 0.08);
+        }
+
+        nav a:hover {
+            color: rgb(59, 130, 246, .5);
+        }
+        nav a:active {
+            color: rgb(255, 255, 255, .9)
+        }
+
+        .rect1::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg,
+                    transparent 0%,
+                    rgba(255, 255, 255, 0.6) 50%,
+                    transparent 100%);
+            transform: translateX(-100%) scale(0.8);
+            opacity: 0;
+            transition: none;
+        }
+
+        @keyframes rect1Shimmer {
+            0% {
+                transform: translateX(-100%) scale(0.95);
+                opacity: 0;
+            }
+
+            50% {
+                transform: translateX(0%) scale(1);
+                opacity: .2;
+            }
+
+            100% {
+                transform: translateX(100%) scale(0.95);
+                opacity: 0;
+            }
+        }
+
+        .rect2::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg,
+                    transparent 0%,
+                    rgba(255, 255, 255, 0.6) 50%,
+                    transparent 100%);
+            transform: translateX(-100%) scale(0.8) rotate(55deg);
+            opacity: 0;
+            transition: none;
+        }
+
+        @keyframes rect2Shimmer {
+            0% {
+                transform: translateX(100%) scale(0.95) rotate(55deg);
+                opacity: 0;
+            }
+
+            50% {
+                transform: scale(1) rotate(55deg);
+                opacity: .3;
+            }
+
+            100% {
+                transform: translateX(-100%) scale(0.95) rotate(55deg);
+                opacity: 0;
+            }
+        }
+
+        .card-outer {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 500px;
+            height: 300px;
+            background: radial-gradient(ellipse at center,
+                    rgb(147, 197, 253, .6) 0%,
+                    rgb(100, 160, 250, .6) 70%,
+                    rgb(59, 130, 246, .6) 100%
+                );
+            border-radius: 15px;
+            z-index: 1;
+            box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.3),
+                inset 0 0 20px rgba(255, 255, 255, 0.2),
+                inset 0 0 30px rgba(255, 255, 255, 0.1),
+                0 0 20px rgba(0, 0, 0, 0.4);
+        }
+
+        .card-inner {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            align-items: center;
+            width: 450px;
+            height: 250px;
+            background: radial-gradient(ellipse at center,
+            rgb(147, 197, 253, .25) 0%,
+            rgb(100, 160, 250, .25) 70%,
+            rgb(59, 130, 246, .25) 100%
+            );
+            border-radius: 60px 60px / 20px 20px;
+            z-index: 2;
+        }
+
+        .card-text {
+            color: rgb(255, 255, 255, .75);
+            text-shadow:
+            -1px -1px 1px rgba(0, 0, 0, 0.5),
+            1px 1px 1px rgba(255, 255, 255, 0.2),
+            0 0 4px rgba(255, 255, 255, 0.08);
+        }
+        
+        .title {
+            font-size: 2rem;
+            color: rgb(59, 130, 246, .5);
+        }
+
+        .subtitle {
+            font-size: 1.5rem;
+            color: rgb(100, 160, 250, .65);
+        }
+
+        .content {
+            font-size: 1rem;
+            color: rgb(255, 255, 255, .9)
+        }
+
+        button {
+            position: relative;
+            z-index: 1;
+            padding: 20px 40px;
+            font-size: 1.2rem;
+            color: rgb(255, 255, 255, .9);
+            text-shadow:
+            -1px -1px 1px rgba(0, 0, 0, 0.4),
+            1px 1px 1px rgba(255, 255, 255, 0.2),
+            0 0 4px rgba(255, 255, 255, 0.08);
+            background-color: rgb(255, 145, 0);
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+             box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.3),
+                inset 0 0 20px rgba(255, 255, 255, 0.2),
+                inset 0 0 30px rgba(255, 255, 255, 0.1),
+                0 0 11px 5px rgba(0, 0, 0, 0.18);
+            transition: all 0.3s ease, transform 0.2s ease;
+        }
+
+        button:hover {
+            background-color: rgb(255, 130, 0);
+            color: rgb(255, 255, 255, .8);
+            box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.4),
+                inset 0 0 20px rgba(255, 255, 255, 0.25),
+                inset 0 0 30px rgba(255, 255, 255, 0.15),     
+                0 0 8px 3px rgba(0, 0, 0, 0.25);
+            transform: translateY(-1px);
+        }
+        
+        button:active {
+            background-color: rgb(255, 120, 0);
+            color: rgb(255, 255, 255, 1);
+            transform: translateY(0);
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="nav-container">
+        <div class="rect1"></div>
+        <div class="rect2">
+            <nav>
+                <a href="#" class="nav-item">Home</a>
+                <a href="#" class="nav-item">Lessons</a>
+                <a href="#" class="nav-item">Gear</a>
+                <a href="#" class="nav-item">About</a>
+                <a href="#" class="nav-item">Contact</a>
+            </nav>
+        </div>
+    </div>
+
+    <button>Book Now</button>
+
+    <div class="card-outer">
+        <div class="card-inner">
+            <p class="card-text title">Title Here</p>
+            <p class="card-text subtitle">Subtitle Here</p>
+            <p class="card-text content">Content Here</p>
+        </div>
+    </div>
+</body>
+
+</html>

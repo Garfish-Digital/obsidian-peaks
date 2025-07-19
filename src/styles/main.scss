@@ -10,7 +10,7 @@
 
 body {
   font-family: $font-primary;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+//   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   min-height: 100vh;
   color: #333;
   overflow-x: hidden;
@@ -19,6 +19,29 @@ body {
 
 html {
   scroll-behavior: smooth;
+}
+
+// Hide scrollbars globally while maintaining scroll functionality
+html {
+  scrollbar-width: none; /* Firefox */
+}
+
+body {
+  -ms-overflow-style: none; /* Internet Explorer and Edge */
+}
+
+body::-webkit-scrollbar {
+  display: none; /* WebKit browsers */
+}
+
+/* Hide scrollbars on all elements */
+* {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* Internet Explorer and Edge */
+}
+
+*::-webkit-scrollbar {
+  display: none; /* WebKit browsers */
 }
 
 // Animated background orbs
@@ -272,6 +295,9 @@ html {
 }
 
 // Animation delays for staggered effects
+.animate__delay-0s {
+  animation-delay: 0s;
+}
 .animate__delay-1s {
   animation-delay: 1s;
 }
@@ -282,6 +308,26 @@ html {
 
 .animate__delay-3s {
   animation-delay: 3s;
+}
+
+.animate__delay-4s {
+  animation-delay: 4s;
+}
+
+.animate__delay-100ms {
+  animation-delay: 0.1s;
+}
+
+.animate__delay-200ms {
+  animation-delay: 0.2s;
+}
+
+.animate__delay-300ms {
+  animation-delay: 0.3s;
+}
+
+.animate__delay-400ms {
+  animation-delay: 0.4s;
 }
 
 // Prevent flash of unstyled content during animation

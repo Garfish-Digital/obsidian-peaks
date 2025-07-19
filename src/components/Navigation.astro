@@ -1,55 +1,301 @@
 ---
-// Vertical right-side navigation component using glassmorphism design
+// Horizontal layered navigation component using glassmorphism design
+const currentPath = Astro.url.pathname;
 ---
 
-<nav class="glass-nav animate__flipInY">
-  <div class="nav-container">
-    <a href="/" class="nav-logo">
-      <span class="logo-text">OP</span>
-    </a>
-    <div class="nav-links">
-      <a href="/" class="nav-link">Home</a>
-      <a href="/lessons" class="nav-link">Lessons</a>
-      <a href="/gear-rental" class="nav-link">Gear</a>
-      <a href="/about" class="nav-link">About</a>
-      <a href="/contact" class="nav-link">Contact</a>
-      <a href="/book-now" class="nav-link cta-link">Book</a>
+<div class="glass-nav-layered animate__flipInX">
+  <div class="nav-container-layered">
+    <div class="rect1"></div>
+    <div class="rect2">
+      <nav class="nav-inner">
+        <a href="/" class={`nav-item ${currentPath === '/' ? 'active' : ''}`}>Home</a>
+        <a href="/lessons" class={`nav-item ${currentPath === '/lessons' ? 'active' : ''}`}>Lessons</a>
+        <a href="/gear-rental" class={`nav-item ${currentPath === '/gear-rental' ? 'active' : ''}`}>Gear</a>
+        <a href="/about" class={`nav-item ${currentPath === '/about' ? 'active' : ''}`}>About</a>
+        <a href="/contact" class={`nav-item ${currentPath === '/contact' ? 'active' : ''}`}>Contact</a>
+      </nav>
     </div>
   </div>
-</nav>
+</div>
+
+<!-- Separate Book button positioned below navigation -->
+<a href="/book-now" class="glass-button-layered book-button">Book Now</a>
 
 <style lang="scss">
-  @import '../styles/variables';
-  @import '../styles/glassmorphism';
-  
-  // Test animation to make sure it works
-  .animate__flipInY {
-    animation: flipInY 0.75s;
+  @import "../styles/variables";
+  @import "../styles/glassmorphism";
+
+  // New layered navigation based on reference design
+  .glass-nav-layered {
+    position: fixed;
+    top: $spacing-lg;
+    left: $spacing-lg;
+    z-index: 9999;
+
+    // Responsive positioning - properly center the navigation
+    @media (max-width: 820px) {
+      position: fixed;
+      top: $spacing-md;
+      left: calc(50vw - (70vw / 2)); // Center based on actual nav width (70vw)
+      transform: scale(0.85);
+      transform-origin: center center;
+    }
+
+    @media (max-width: $mobile) {
+      top: $spacing-sm;
+      left: calc(50vw - (85vw / 2)); // Center based on actual nav width (85vw)
+      transform: scale(0.7);
+      transform-origin: center center;
+    }
+  }
+
+  .nav-container-layered {
+    position: relative;
+    width: 60vw;
+    max-width: 800px;
+    min-width: 500px;
+    height: 80px;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+
+    // Responsive sizing
+    @media (max-width: 820px) {
+      width: 70vw;
+      min-width: 400px;
+    }
+
+    @media (max-width: $mobile) {
+      width: 85vw;
+      min-width: 300px;
+      height: 60px;
+    }
+  }
+
+  // Orchestrated shimmer animations from reference
+  .nav-container-layered:hover .rect1::before {
+    animation: rect1Shimmer 1s ease-out forwards;
+  }
+
+  .nav-container-layered:hover .rect2::before {
+    animation: rect2Shimmer 0.4s ease-out 1.5s forwards;
+  }
+
+  .rect1 {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(
+      ellipse at center,
+      rgb(147, 197, 253, 0.65) 0%,
+      rgb(100, 160, 250, 0.65) 60%,
+      rgb(59, 130, 246, 0.65) 100%
+    );
+    border-radius: 15px;
+    z-index: 1;
+    box-shadow:
+      inset 0 0 10px rgba(255, 255, 255, 0.3),
+      inset 0 0 20px rgba(255, 255, 255, 0.2),
+      inset 0 0 30px rgba(255, 255, 255, 0.1),
+      0 0 20px rgba(0, 0, 0, 0.4);
+    overflow: hidden;
+  }
+
+  .rect2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 12px;
+    margin-left: 4%;
+    width: 92%;
+    // height: calc(70% - 12px);
+    height: 70%;
+    background: radial-gradient(
+      ellipse at center,
+      rgb(59, 130, 246, 0.5) 0%,
+      rgb(100, 160, 250, 0.5) 75%,
+      rgb(147, 197, 253, 0.5) 100%
+    );
+    border-radius: 60px 60px / 20px 20px;
+    z-index: 2;
+    overflow: hidden;
+
+    @media (max-width: $mobile) {
+      margin-top: 8px;
+      height: 70%;
+      border-radius: 30px 30px / 10px 10px;
+    }
+  }
+
+  .nav-inner {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 100%;
+    height: 100%;
+  }
+
+  .nav-item {
+    color: rgb(100, 160, 250, 0.65);
+    font-size: 1.25rem;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s ease;
+
+    // Embossed text effect from reference
+    text-shadow:
+      -1px -1px 1px rgba(0, 0, 0, 0.5),
+      1px 1px 1px rgba(255, 255, 255, 0.2),
+      0 0 4px rgba(255, 255, 255, 0.08);
+
+    &:hover {
+      color: rgb(59, 130, 246, 0.5);
+    }
+
+    &:active {
+      color: rgba(255, 255, 255, 0.9);
+    }
+
+    // Current page active state
+    &.active {
+      color: rgba(255, 255, 255, 0.95);
+      
+      // Enhanced embossed effect for active page
+      text-shadow:
+        -1px -1px 1px rgba(0, 0, 0, 0.6),
+        1px 1px 1px rgba(255, 255, 255, 0.3),
+        0 0 6px rgba(255, 255, 255, 0.15);
+    }
+
+    @media (max-width: $tablet) {
+      font-size: 1.1rem;
+    }
+
+    @media (max-width: $mobile) {
+      font-size: 0.9rem;
+    }
+  }
+
+  // Shimmer animation keyframes from reference
+  .rect1::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(255, 255, 255, 0.6) 50%,
+      transparent 100%
+    );
+    transform: translateX(-100%) scale(0.8);
+    opacity: 0;
+    transition: none;
+  }
+
+  @keyframes rect1Shimmer {
+    0% {
+      transform: translateX(-100%) scale(0.95);
+      opacity: 0;
+    }
+    50% {
+      transform: translateX(0%) scale(1);
+      opacity: 0.2;
+    }
+    100% {
+      transform: translateX(100%) scale(0.95);
+      opacity: 0;
+    }
+  }
+
+  .rect2::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(255, 255, 255, 0.6) 50%,
+      transparent 100%
+    );
+    transform: translateX(-100%) scale(0.8) rotate(55deg);
+    opacity: 0;
+    transition: none;
+  }
+
+  @keyframes rect2Shimmer {
+    0% {
+      transform: translateX(100%) scale(0.95) rotate(55deg);
+      opacity: 0;
+    }
+    50% {
+      transform: scale(1) rotate(55deg);
+      opacity: 0.3;
+    }
+    100% {
+      transform: translateX(-100%) scale(0.95) rotate(55deg);
+      opacity: 0;
+    }
+  }
+
+  // Book button positioning and styling
+  .book-button {
+    position: fixed;
+    top: calc($spacing-lg + 150px); // Below navigation
+    left: $spacing-lg;
+    z-index: 9998;
+
+    // Responsive positioning - keep left-aligned, don't center
+    @media (max-width: 820px) {
+      top: calc($spacing-lg + 100px); // Adjusted for scaled nav height
+      left: calc(50vw - (70vw / 2)); // Align with left edge of nav
+      transform: scale(0.85);
+      transform-origin: left center;
+    }
+
+    @media (max-width: $mobile) {
+      top: calc($spacing-sm + 84px); // Adjusted for scaled nav height
+      left: calc(50vw - (85vw / 2)); // Align with left edge of nav
+      transform: scale(0.7);
+      transform-origin: left center;
+    }
+  }
+
+  // Entrance animation for layered navigation
+  .animate__flipInX {
+    animation: flipInX 0.75s;
     animation-fill-mode: both;
   }
-  
-  @keyframes flipInY {
+
+  @keyframes flipInX {
     from {
-      transform: perspective(400px) rotate3d(0, 1, 0, 90deg);
+      transform: perspective(400px) rotate3d(1, 0, 0, 90deg);
       animation-timing-function: ease-in;
       opacity: 0;
     }
     40% {
-      transform: perspective(400px) rotate3d(0, 1, 0, -20deg);
+      transform: perspective(400px) rotate3d(1, 0, 0, -20deg);
       animation-timing-function: ease-in;
     }
     60% {
-      transform: perspective(400px) rotate3d(0, 1, 0, 10deg);
+      transform: perspective(400px) rotate3d(1, 0, 0, 10deg);
       opacity: 1;
     }
     80% {
-      transform: perspective(400px) rotate3d(0, 1, 0, -5deg);
+      transform: perspective(400px) rotate3d(1, 0, 0, -5deg);
     }
     to {
       transform: perspective(400px);
     }
   }
-  
+
   .nav-container {
     display: flex;
     flex-direction: column;
@@ -57,99 +303,32 @@
     padding: $spacing-lg $spacing-sm;
     gap: $spacing-lg;
   }
-  
+
   .nav-logo {
     text-decoration: none;
     color: inherit;
     transition: all $transition-fast;
-    
+
     &:hover {
       transform: scale(1.1);
     }
-    
+
     .logo-text {
       font-family: $font-display;
-      font-size: 1.8rem;
+      font-size: 1.35rem;
       font-weight: 700;
       color: rgba(255, 255, 255, 0.95);
       letter-spacing: 2px;
       text-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-      background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.7));
+      background: linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.9),
+        rgba(255, 255, 255, 0.7)
+      );
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
     }
   }
-  
-  .nav-links {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: $spacing-md;
-    
-    @media (max-width: $desktop) {
-      gap: $spacing-sm;
-    }
-    
-    @media (max-width: $tablet) {
-      gap: $spacing-xs;
-    }
-    
-    @media (max-width: $mobile) {
-      gap: 6px;
-    }
-  }
-  
-  .nav-link {
-    text-decoration: none;
-    color: rgba(255, 255, 255, 0.9);
-    font-weight: 500;
-    font-size: 0.9rem;
-    transition: all $transition-fast;
-    padding: $spacing-sm $spacing-md;
-    border-radius: $radius-lg;
-    text-align: center;
-    min-width: 80px;
-    
-    &:hover {
-      color: rgba(255, 255, 255, 0.95);
-      background: rgba(255, 255, 255, 0.1);
-      box-shadow: 0 5px 15px rgba(255, 255, 255, 0.1);
-    }
-    
-    &.cta-link {
-      background: rgba(255, 255, 255, 0.2);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 255, 255, 0.3);
-      color: rgba(255, 255, 255, 0.95);
-      font-weight: 600;
-      margin-top: $spacing-sm;
-      
-      &:hover {
-        background: rgba(255, 255, 255, 0.25);
-        border-color: rgba(255, 255, 255, 0.4);
-        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-      }
-    }
-    
-    @media (max-width: $desktop) {
-      font-size: 0.85rem;
-      padding: $spacing-xs $spacing-sm;
-      min-width: 70px;
-    }
-    
-    @media (max-width: $tablet) {
-      font-size: 0.8rem;
-      padding: $spacing-xs;
-      min-width: 60px;
-    }
-    
-    @media (max-width: $mobile) {
-      font-size: 0.75rem;
-      padding: 6px 8px;
-      min-width: 50px;
-    }
-  }
-  
+
 </style>

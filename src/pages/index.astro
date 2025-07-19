@@ -8,30 +8,36 @@ import Hero from '../components/Hero.astro';
   <Navigation />
   <Hero 
     title="Obsidian Peaks"
-    subtitle="Where crystalline design meets mountain majesty. Experience the elegance of glassmorphism in web design."
-    ctaText="Discover More"
+    subtitle="The elegance of glassmorphism."
+    ctaText="Explore"
     ctaLink="#features"
   />
   
   <section id="features" class="features-section">
     <div class="container">
       <div class="features-grid">
-        <div class="glass-card feature-card">
-          <div class="feature-icon">🏔️</div>
-          <h3>Mountain Inspiration</h3>
-          <p>Design elements inspired by the majestic peaks and pristine snow of mountain landscapes.</p>
+        <div class="glass-card-layered feature-card scroll-animate" data-animation="zoomInLeft" data-delay="0">
+          <!-- <div class="feature-icon">🏔️</div> -->
+          <h3>Mountain<br>Inspiration</h3>
+          <p>Design and animations inspired by the majestic peaks and pristine snow of mountain landscapes.</p>
         </div>
         
-        <div class="glass-card feature-card">
-          <div class="feature-icon">✨</div>
-          <h3>Glassmorphism Effects</h3>
+        <div class="glass-card-layered feature-card scroll-animate" data-animation="zoomInUp" data-delay="850">
+          <!-- <div class="feature-icon">✨</div> -->
+          <h3>Glassmorphism<br>Effects</h3>
           <p>Beautiful frosted glass effects with backdrop blur and subtle transparency for modern aesthetics.</p>
         </div>
         
-        <div class="glass-card feature-card">
-          <div class="feature-icon">🎨</div>
-          <h3>Design System</h3>
+        <div class="glass-card-layered feature-card scroll-animate" data-animation="zoomInDown" data-delay="350">
+          <!-- <div class="feature-icon">🎨</div> -->
+          <h3>Design<br>System</h3>
           <p>Comprehensive SCSS-based design system with consistent spacing, colors, and component patterns.</p>
+        </div>
+
+        <div class="glass-card-layered feature-card scroll-animate" data-animation="zoomInRight" data-delay="500">
+          <!-- <div class="feature-icon">🎨</div> -->
+          <h3>Zoom<br>Animation</h3>
+          <p>Lively entrances using CSS keyframes with high-speed transforms and cubic-bezier timing.</p>
         </div>
       </div>
     </div>
@@ -54,20 +60,72 @@ import Hero from '../components/Hero.astro';
   
   .features-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: 1fr; // Default: 1 per row (mobile)
     gap: $spacing-xl;
     margin-top: $spacing-xl;
+    justify-items: center; // Center cards horizontally
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    
+    // 2 per row at 640px and above
+    @media (min-width: 640px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    
+    // 4 per row at 1190px and above  
+    @media (min-width: 1190px) {
+      grid-template-columns: repeat(4, 1fr);
+    }
   }
   
+  // New layered glass card implementation from reference
+  
   .feature-card {
+    position: relative;
+     max-width: 250px;
+    min-height: 150px;
+    z-index: 2;
     text-align: center;
-    transition: all $transition-medium;
-    
+    transition: all $transition-fast;
+    padding: $spacing-md;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     &:hover {
       transform: translateY(-8px);
     }
   }
   
+  // Scroll animation states
+  .scroll-animate {
+    opacity: 0;
+    transform: scale(0.8);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+    
+    &.animate {
+      opacity: 1;
+      transform: scale(1);
+    }
+    
+    // Specific animation classes applied on scroll
+    &.animate.animate__zoomInLeft {
+      animation: zoomInLeft 0.6s ease-out forwards;
+    }
+    
+    &.animate.animate__zoomInUp {
+      animation: zoomInUp 0.6s ease-out forwards;
+    }
+    
+    &.animate.animate__zoomInDown {
+      animation: zoomInDown 0.6s ease-out forwards;
+    }
+    
+    &.animate.animate__zoomInRight {
+      animation: zoomInRight 0.6s ease-out forwards;
+    }
+  }
   .feature-icon {
     font-size: 3rem;
     margin-bottom: $spacing-md;
@@ -76,44 +134,47 @@ import Hero from '../components/Hero.astro';
   
   .feature-card h3 {
     font-family: $font-display;
-    font-size: 1.5rem;
-    color: rgba(255, 255, 255, 0.95);
-    margin-bottom: $spacing-md;
+    font-size: 2rem;
+    color: rgba(100, 160, 250, 0.65);
+    margin-bottom: $spacing-sm;
     letter-spacing: 1px;
     text-transform: uppercase;
-    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    
+    // Embossed text effect from reference
+    text-shadow:
+      -1px -1px 1px rgba(0, 0, 0, 0.5),
+      1px 1px 1px rgba(255, 255, 255, 0.2),
+      0 0 4px rgba(255, 255, 255, 0.08);
   }
   
   .feature-card p {
-    color: rgba(255, 255, 255, 0.8);
+    color: rgba(255, 255, 255, 0.9);
     line-height: 1.6;
     font-size: 1rem;
-  }
-  
-  @media (max-width: $desktop) {
-    .features-grid {
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: $spacing-lg;
-    }
+    
+    // Embossed text effect from reference
+    text-shadow:
+      -1px -1px 1px rgba(0, 0, 0, 0.5),
+      1px 1px 1px rgba(255, 255, 255, 0.2),
+      0 0 4px rgba(255, 255, 255, 0.08);
   }
   
   @media (max-width: $tablet) {
-    .features-grid {
-      grid-template-columns: 1fr;
-      gap: $spacing-lg;
-    }
-    
     .features-section {
       padding: $spacing-xl $spacing-md;
+    }
+    
+    .features-grid {
+      gap: $spacing-lg;
     }
     
     .feature-icon {
       font-size: 2.5rem;
     }
     
-    .feature-card h3 {
-      font-size: 1.3rem;
-    }
+    // .feature-card h3 {
+    //   font-size: 1.3rem;
+    // }
   }
   
   @media (max-width: $mobile) {
@@ -121,16 +182,55 @@ import Hero from '../components/Hero.astro';
       padding: $spacing-lg $spacing-sm;
     }
     
+    .features-grid {
+      gap: $spacing-md;
+    }
+    
     .feature-icon {
       font-size: 2rem;
     }
     
-    .feature-card h3 {
-      font-size: 1.2rem;
-    }
+    // .feature-card h3 {
+    //   font-size: 2rem;
+    // }
     
     .feature-card p {
       font-size: 0.9rem;
     }
   }
 </style>
+
+<script>
+  // Intersection Observer for scroll-triggered animations
+  document.addEventListener('DOMContentLoaded', function() {
+    const observerOptions = {
+      threshold: 0.3, // Trigger when 30% of element is visible
+      rootMargin: '0px 0px -50px 0px' // Trigger slightly before element enters viewport
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const element = entry.target;
+          const animationType = element.dataset.animation;
+          const delay = parseInt(element.dataset.delay) || 0;
+          
+          // Use setTimeout to stagger animation timing
+          setTimeout(() => {
+            element.classList.add('animate');
+            element.classList.add(`animate__${animationType}`);
+          }, delay);
+          
+          // Stop observing this element after animation triggers
+          observer.unobserve(element);
+        }
+      });
+    }, observerOptions);
+
+    // Observe all elements with scroll-animate class
+    const animateElements = document.querySelectorAll('.scroll-animate');
+    animateElements.forEach((element) => {
+      observer.observe(element);
+    });
+  });
+</script>
