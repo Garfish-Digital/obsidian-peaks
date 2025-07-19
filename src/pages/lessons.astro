@@ -1,35 +1,52 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
-import Navigation from '../components/Navigation.astro';
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Navigation from "../components/Navigation.astro";
 ---
 
 <BaseLayout title="Lessons - Obsidian Peaks">
   <Navigation />
-  
+
   <main class="lessons-page">
     <div class="container">
       <div class="page-header animate__zoomInDown">
+      <!-- <div class="page-header obsidian-card-layered animate__zoomInDown"> -->
         <h1>Skiing & Snowboarding</h1>
-        <p>Learn from certified instructors in the beautiful mountain setting of Obsidian Peaks</p>
+        <p>
+          Learn from certified instructors in the beautiful setting of
+          Obsidian Peaks
+        </p>
       </div>
-      
+
       <div class="lessons-grid">
-        <div class="glass-card-layered animate__zoomInLeft">
+        <div class="glass-card-content glass-card-layered animate__zoomInLeft">
           <h3 class="card-title">Beginner Lessons</h3>
-          <p>Perfect for first-time skiers and snowboarders. Learn the basics in a safe, supportive environment.</p>
-          <a href="/lessons/beginner" class="glass-button primary">Learn More</a>
+          <p><span>
+            Perfect for first-time skiers and snowboarders. Learn the basics in
+            a safe, supportive environment.
+          </span></p>
+          <a href="/lessons/beginner" class="white-glass-button">Learn More</a
+          >
         </div>
-        
-        <div class="glass-card-layered animate__bounceIn">
+
+        <div class="glass-card-content glass-card-layered animate__bounceIn">
           <h3 class="card-title">Intermediate Lessons</h3>
-          <p>Ready to take your skills to the next level? Improve technique and build confidence on varied terrain.</p>
-          <a href="/lessons/intermediate" class="glass-button primary">Learn More</a>
+          <p><span>
+            Ready to take your skills to the next level? Improve technique and
+            build confidence on varied terrain.
+          </span></p>
+          <a href="/lessons/intermediate" class="white-glass-button"
+            >Learn More</a
+          >
         </div>
-        
-        <div class="glass-card-layered animate__zoomInRight">
+
+        <div class="glass-card-content glass-card-layered animate__zoomInRight">
           <h3 class="card-title">Advanced Lessons</h3>
-          <p>Master challenging slopes and advanced techniques with our expert instructors.</p>
-          <a href="/lessons/advanced" class="glass-button primary">Learn More</a>
+          <p><span>
+            Master challenging slopes and advanced techniques with our expert, friendly
+            instructors.
+          </span></p>
+          <a href="/lessons/advanced" class="white-glass-button">Learn More</a
+          >
         </div>
       </div>
     </div>
@@ -37,30 +54,51 @@ import Navigation from '../components/Navigation.astro';
 </BaseLayout>
 
 <style lang="scss">
-  @import '../styles/variables';
-  @import '../styles/glassmorphism';
-  
+  @import "../styles/variables";
+  @import "../styles/glassmorphism";
+
+  .lessons-page {
+    min-height: 100vh;
+    padding: 150px $spacing-md $spacing-xxl $spacing-md ;
+    &::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+        background-image: url("/images/istockphoto-1346231400-1024x1024.jpg");
+      background-size: cover;
+      background-position: top;
+      background-repeat: no-repeat;
+      filter: grayscale(100%);
+      opacity: 0.2;
+      z-index: -1;
+      pointer-events: none;
+    }
+  }
+
   // Animations for lessons page
   .animate__zoomInDown {
     animation: zoomInDown 0.6s;
     animation-fill-mode: both;
   }
-  
+
   .animate__zoomInLeft {
     animation: zoomInLeft 0.6s;
     animation-fill-mode: both;
   }
-  
+
   .animate__bounceIn {
     animation: bounceIn 0.75s;
     animation-fill-mode: both;
   }
-  
+
   .animate__zoomInRight {
     animation: zoomInRight 0.6s;
     animation-fill-mode: both;
   }
-  
+
   @keyframes zoomInDown {
     from {
       opacity: 0;
@@ -77,7 +115,7 @@ import Navigation from '../components/Navigation.astro';
       transform: scale3d(1, 1, 1) translate3d(0, 0, 0);
     }
   }
-  
+
   @keyframes zoomInLeft {
     from {
       opacity: 0;
@@ -94,7 +132,7 @@ import Navigation from '../components/Navigation.astro';
       transform: scale3d(1, 1, 1) translate3d(0, 0, 0);
     }
   }
-  
+
   @keyframes zoomInRight {
     from {
       opacity: 0;
@@ -111,9 +149,14 @@ import Navigation from '../components/Navigation.astro';
       transform: scale3d(1, 1, 1) translate3d(0, 0, 0);
     }
   }
-  
+
   @keyframes bounceIn {
-    from, 20%, 40%, 60%, 80%, to {
+    from,
+    20%,
+    40%,
+    60%,
+    80%,
+    to {
       animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
     }
     0% {
@@ -138,30 +181,26 @@ import Navigation from '../components/Navigation.astro';
       transform: scale3d(1, 1, 1);
     }
   }
-  
-  .lessons-page {
-    min-height: 100vh;
-    padding: 120px $spacing-md $spacing-xxl;
-  }
-  
+
+
   .container {
     max-width: 1200px;
     margin: 0 auto;
   }
-  
+
   .page-header {
     text-align: center;
     margin-bottom: $spacing-xxl;
-    
+
     h1 {
       font-family: $font-display;
       font-size: clamp(2.5rem, 6vw, 4rem);
-      color: #222;
+      color: rgb(0, 0, 0, .25);
       margin-bottom: $spacing-md;
       text-transform: uppercase;
       letter-spacing: 1px;
     }
-    
+
     p {
       font-size: 1.2rem;
       color: #555;
@@ -169,24 +208,26 @@ import Navigation from '../components/Navigation.astro';
       margin: 0 auto;
     }
   }
-  
+
   .card-blue {
     @include glass-accent-blue;
   }
-  
+
   .card-orange {
     @include glass-accent-orange;
   }
-  
+
   .card-title {
-    font-family: $font-display;
-    font-size: 1.25rem;
-    color: #222;
-    margin-bottom: $spacing-md;
-    letter-spacing: 0.5px;
-    text-transform: uppercase;
+                color: rgb(59, 130, 246, .5);
+
+    // font-family: $font-display;
+    // font-size: 1.25rem;
+    // color: #222;
+    // margin-bottom: $spacing-md;
+    // letter-spacing: 0.5px;
+    // text-transform: uppercase;
   }
-  
+
   .lessons-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));

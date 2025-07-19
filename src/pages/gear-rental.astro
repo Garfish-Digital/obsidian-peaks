@@ -10,35 +10,35 @@ import Navigation from '../components/Navigation.astro';
     <div class="container">
       <div class="page-header animate__zoomInDown">
         <h1>Gear Rental</h1>
-        <p>High-quality equipment for all skill levels. Everything you need for your mountain adventure.</p>
+        <p>High-quality equipment for all skill levels.</p>
       </div>
       
       <div class="rental-grid">
-        <div class="glass-card card-light animate__zoomInLeft">
+        <div class="glass-card-content glass-card-layered animate__zoomInLeft">
           <h3 class="card-title">Ski Package</h3>
-          <p>Complete ski setup including skis, boots, poles, and helmet</p>
+          <p><span>Complete ski setup including skis, boots, poles, and helmet</span></p>
           <p class="price">$45/day</p>
-          <a href="/book-now" class="glass-button primary">Reserve Now</a>
+          <a href="/book-now" class="white-glass-button">Reserve Now</a>
         </div>
         
-        <div class="glass-card card-blue animate__bounceIn">
+        <div class="glass-card-content glass-card-layered animate__bounceIn">
           <h3 class="card-title">Snowboard Package</h3>
-          <p>Snowboard, boots, and helmet for all riding styles</p>
+          <p><span>Snowboard, boots, and helmet for all riding styles</span></p>
           <p class="price">$42/day</p>
-          <a href="/book-now" class="glass-button primary">Reserve Now</a>
+          <a href="/book-now" class="white-glass-button">Reserve Now</a>
         </div>
         
-        <div class="glass-card card-orange animate__zoomInRight">
+        <div class="glass-card-content glass-card-layered animate__zoomInRight">
           <h3 class="card-title">Premium Package</h3>
-          <p>Top-of-the-line equipment for advanced riders</p>
+          <p><span>Top-of-the-line equipment for advanced riders</span></p>
           <p class="price">$65/day</p>
-          <a href="/book-now" class="glass-button primary">Reserve Now</a>
+          <a href="/book-now" class="white-glass-button">Reserve Now</a>
         </div>
       </div>
       
       <div class="rental-info animate__zoomInUp">
-        <div class="glass-card">
-          <h2>Rental Information</h2>
+        <div class="glass-card-content glass-card-layered">
+          <h3>Rental Information</h3>
           <ul>
             <li>Multi-day discounts available</li>
             <li>Equipment sizing and fitting included</li>
@@ -54,6 +54,26 @@ import Navigation from '../components/Navigation.astro';
 <style lang="scss">
   @import '../styles/variables';
   @import '../styles/glassmorphism';
+
+  .gear-rental-page {
+     &::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-image: url("/images/istockphoto-1740185233-1024x1024.jpg");
+      background-image: url("/images/istockphoto-1740185233-1024x1024.jpg");
+      background-size: cover;
+      background-position: top;
+      background-repeat: no-repeat;
+      filter: grayscale(100%);
+      opacity: 0.2;
+      z-index: -1;
+      pointer-events: none;
+    }
+  }
   
   // Animations for gear-rental page
   .animate__zoomInDown {
@@ -177,7 +197,7 @@ import Navigation from '../components/Navigation.astro';
     h1 {
       font-family: $font-display;
       font-size: clamp(2.5rem, 6vw, 4rem);
-      color: #222;
+      color: rgb(0, 0, 0, .25);
       margin-bottom: $spacing-md;
       text-transform: uppercase;
       letter-spacing: 1px;

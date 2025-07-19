@@ -10,11 +10,11 @@ import Navigation from '../components/Navigation.astro';
     <div class="container">
       <div class="glass-hero-text animate__zoomInLeft">
         <h1>Book Your Adventure</h1>
-        <p>Reserve your lessons and equipment for an unforgettable mountain experience</p>
+        <p>Reserve your lessons and equipment for an unforgettable experience</p>
       </div>
       
       <div class="booking-form-container animate__zoomInRight">
-        <div class="glass-card">
+        <div class="glass-card-layered glass-card-content">
           <form class="booking-form">
             <div class="form-group">
               <label for="service">Select Service</label>
@@ -76,7 +76,7 @@ import Navigation from '../components/Navigation.astro';
               <textarea id="notes" name="notes" rows="4" placeholder="Any special requests or notes..."></textarea>
             </div>
             
-            <button type="submit" class="glass-button primary submit-btn">Book Now</button>
+            <button type="submit" class="white-glass-button submit-btn">Book Now</button>
           </form>
         </div>
       </div>
@@ -124,10 +124,37 @@ import Navigation from '../components/Navigation.astro';
       animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1);
     }
   }
+   .booking-page {
+      &::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-image: url("/images/istockphoto-1029280204-1024x1024.jpg");
+      background-size: cover;
+      background-position: top;
+      background-repeat: no-repeat;
+      filter: grayscale(100%);
+      opacity: 0.3;
+      z-index: -1;
+      pointer-events: none;
+    }
+  }
   
   .booking-page {
     min-height: 100vh;
     padding: 120px $spacing-md $spacing-xxl;
+
+      h1 {
+font-family: $font-display;
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      color: rgb(0, 0, 0, .25);
+      margin-bottom: $spacing-md;
+      text-transform: uppercase;
+      letter-spacing: 1px;   
+     }
   }
   
   .container {
@@ -173,11 +200,32 @@ import Navigation from '../components/Navigation.astro';
     font-size: 1rem;
     box-sizing: border-box;
   }
+
+  input[type="date"] {
+        padding: 15px 20px;
+
+  }
+  
+  select {
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='rgba(255,255,255,0.6)' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6,9 12,15 18,9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 15px center;
+    background-size: 20px;
+    padding: 15px 50px 15px 5px;
+    // padding-right: 50px;
+    
+    option {
+      background: rgba(20, 20, 30, 0.95);
+      color: rgba(255, 255, 255, 0.9);
+    }
+  }
   
   .submit-btn {
-    @include glass-button-enhanced;
+    // @include glass-button-enhanced;
     width: 100%;
-    padding: 15px 30px;
+    // padding: 15px 30px;
     font-size: 1.1rem;
     margin-top: $spacing-md;
     border: none;

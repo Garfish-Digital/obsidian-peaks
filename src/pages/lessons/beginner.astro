@@ -6,7 +6,7 @@ import Navigation from '../../components/Navigation.astro';
 <BaseLayout title="Beginner Lessons - Obsidian Peaks">
   <Navigation />
   
-  <main class="lesson-page">
+  <main class="lesson-page beginner-lesson-page">
     <div class="container">
       <!-- <div class="glass-hero-text animate__zoomInDown">
         <h1>Beginner Lessons</h1>
@@ -14,7 +14,7 @@ import Navigation from '../../components/Navigation.astro';
       </div> -->
       
       <div class="lesson-content">
-        <div class="glass-card card-light animate__zoomInLeft">
+        <div class="glass-card-content glass-card-layered animate__zoomInLeft">
           <h3 class="card-title">What You'll Learn from Beginner Lessons</h3>
           <ul>
             <li>Basic skiing/snowboarding stance and balance</li>
@@ -24,12 +24,12 @@ import Navigation from '../../components/Navigation.astro';
           </ul>
         </div>
         
-        <div class="glass-card card-blue animate__zoomInRight">
+        <div class="glass-card-content glass-card-layered animate__zoomInRight">
           <h3 class="card-title">Beginner Lesson Details</h3>
-          <p><strong>Duration:</strong> 2 hours</p>
-          <p><strong>Group Size:</strong> Maximum 6 students</p>
-          <p><strong>Age:</strong> 8+ years</p>
-          <p><strong>Price:</strong> $75 per person</p>
+          <p><strong>Duration:</strong><span> 2 hours</span></p>
+          <p><strong>Group Size:</strong><span> Maximum 6 students</span></p>
+          <p><strong>Age:</strong><span> 8+ years</span></p>
+          <p><strong>Price:</strong><span> $75 per person</span></p>
           <!-- <a href="/book-now" class="glass-button primary">Book Now</a> -->
         </div>
       </div>
@@ -40,6 +40,26 @@ import Navigation from '../../components/Navigation.astro';
 <style lang="scss">
   @import '../../styles/variables';
   @import '../../styles/glassmorphism';
+
+  .beginner-lesson-page {
+      &::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-image: url("/images/istockphoto-1203777952-1024x1024.jpg");
+    //   background-image: url("/images/istockphoto-1354790472-1024x1024.jpg");
+      background-size: cover;
+      background-position: top;
+      background-repeat: no-repeat;
+      filter: grayscale(100%);
+      opacity: 0.2;
+      z-index: -1;
+      pointer-events: none;
+    }
+  }
   
   // Animations for lesson page
   .animate__zoomInLeft {

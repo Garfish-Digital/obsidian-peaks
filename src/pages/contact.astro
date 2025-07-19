@@ -14,34 +14,34 @@ import Navigation from '../components/Navigation.astro';
       </div>
       
       <div class="contact-content">
-        <div class="contact-info animate__zoomInLeft">
-          <div class="glass-card">
-            <h2>Contact Information</h2>
+        <div class="contact-info glass-card-content glass-card-layered animate__zoomInLeft">
+          <!-- <div class="glass-card"> -->
+            <h3>Contact Information</h3>
             <div class="contact-item">
-              <h3>📍 Location</h3>
-              <p>1234 Mountain View Drive<br>Obsidian Peaks, CO 80424</p>
+              <p>Location</p>
+              <span>1234 Mountain View Drive<br>Obsidian Peaks, CO 80424</span>
             </div>
             
             <div class="contact-item">
-              <h3>📞 Phone</h3>
-              <p>(555) 123-4567</p>
+              <p>Phone</p>
+              <span>(555) 123-4567</span>
             </div>
             
             <div class="contact-item">
-              <h3>✉️ Email</h3>
-              <p>info@obsidianpeaks.com</p>
+              <p>Email</p>
+              <span>info@obsidianpeaks.com</span>
             </div>
             
             <div class="contact-item">
-              <h3>🕒 Hours</h3>
-              <p>Daily: 8:00 AM - 5:00 PM<br>Season: December - April</p>
+              <p>Hours</p>
+              <span>Daily: 8:00 AM - 5:00 PM<br>Season: December - April</span>
             </div>
-          </div>
+          <!-- </div> -->
         </div>
         
-        <div class="contact-form animate__zoomInRight">
-          <div class="glass-card">
-            <h2>Send us a Message</h2>
+        <div class="contact-for glass-card-content glass-card-layered animate__zoomInRight">
+          <!-- <div class="glass-card"> -->
+            <h3>Send us a Message</h3>
             <form>
               <div class="form-row">
                 <div class="form-group">
@@ -67,12 +67,12 @@ import Navigation from '../components/Navigation.astro';
               
               <div class="form-group">
                 <label for="message">Message</label>
-                <textarea id="message" name="message" rows="6" required></textarea>
+                <textarea id="message" name="message" rows="4" required></textarea>
               </div>
               
               <button type="submit" class="glass-button primary submit-btn">Send Message</button>
             </form>
-          </div>
+          <!-- </div> -->
         </div>
       </div>
     </div>
@@ -82,6 +82,30 @@ import Navigation from '../components/Navigation.astro';
 <style lang="scss">
   @import '../styles/variables';
   @import '../styles/glassmorphism';
+
+  .contact-page {
+      &::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-image: url("/images/istockphoto-637147078-1024x1024.jpg");
+      background-image: url("/images/istockphoto-1029280204-1024x1024.jpg");
+      background-image: url("/images/istockphoto-1346231400-1024x1024.jpg");
+      background-image: url("/images/istockphoto-1300898472-1024x1024.jpg");
+            background-image: url("/images/istockphoto-1059205830-1024x1024.jpg");
+
+      background-size: cover;
+      background-position: top;
+      background-repeat: no-repeat;
+      filter: grayscale(100%);
+      opacity: 0.2;
+      z-index: -1;
+      pointer-events: none;
+    }
+  }
   
   // Animations for contact page
   .animate__zoomInDown {
@@ -141,6 +165,15 @@ import Navigation from '../components/Navigation.astro';
   .contact-page {
     min-height: 100vh;
     padding: 120px $spacing-md $spacing-xxl;
+
+      h1 {
+font-family: $font-display;
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      color: rgb(0, 0, 0, .25);
+      margin-bottom: $spacing-md;
+      text-transform: uppercase;
+      letter-spacing: 1px;   
+     }
   }
   
   .container {
@@ -172,17 +205,17 @@ import Navigation from '../components/Navigation.astro';
   .contact-item {
     margin-bottom: $spacing-lg;
     
-    h3 {
-      font-weight: 600;
-      color: #333;
-      margin-bottom: $spacing-xs;
-      font-size: 1.1rem;
-    }
+    // h3 {
+    //   font-weight: 600;
+    //   color: #333;
+    //   margin-bottom: $spacing-xs;
+    //   font-size: 1.1rem;
+    // }
     
-    p {
-      color: #555;
-      line-height: 1.6;
-    }
+    // p {
+    //   color: #555;
+    //   line-height: 1.6;
+    // }
   }
   
   .form-row {
@@ -204,9 +237,9 @@ import Navigation from '../components/Navigation.astro';
   }
   
   label {
-    font-weight: 600;
-    color: #333;
-    font-size: 0.9rem;
+    // font-weight: 600;
+    // color: #333;
+    // font-size: 0.9rem;
   }
   
   input, textarea {

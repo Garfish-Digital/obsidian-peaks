@@ -9,24 +9,24 @@ import Navigation from '../components/Navigation.astro';
   <main class="about-page">
     <div class="container">
       <div class="glass-hero-text animate__zoomInDown">
-        <h1>About Obsidian Peaks</h1>
+        <h1>Obsidian Peaks</h1>
         <p>Your premier destination for mountain adventures and winter sports excellence</p>
       </div>
       
       <div class="about-content">
-        <div class="glass-card animate__zoomInLeft">
-          <h2>Our Story</h2>
-          <p>Founded in 1998, Obsidian Peaks has been providing exceptional mountain experiences for over 25 years. Located in the heart of the Rocky Mountains, we combine breathtaking natural beauty with world-class instruction and equipment.</p>
-          <p>Our team of certified instructors brings decades of experience and passion for winter sports. Whether you're taking your first turns or perfecting advanced techniques, we're here to help you achieve your mountain goals.</p>
+        <div class="glass-card-content glass-card-layered animate__zoomInLeft">
+          <h3>Our Story</h3>
+          <p><span>Founded in 1998, Obsidian Peaks has been providing exceptional mountain experiences for over 25 years. Located in the heart of the Rocky Mountains, we combine breathtaking natural beauty with world-class instruction and equipment.</span></p>
+          <p><span>Our team of certified instructors brings decades of experience and passion for winter sports. Whether you're taking your first turns or perfecting advanced techniques, we're here to help you achieve your mountain goals.</span></p>
         </div>
         
-        <div class="glass-card animate__zoomInRight">
-          <h2>Our Mission</h2>
-          <p>To provide safe, fun, and educational mountain experiences that inspire a lifelong love of winter sports while respecting and preserving our natural environment.</p>
+        <div class="glass-card-content glass-card-layered animate__zoomInRight">
+          <h3>Our Mission</h3>
+          <p><span>To provide safe, fun, and educational mountain experiences that inspire a lifelong love of winter sports while respecting and preserving our natural environment.</span></p>
         </div>
         
-        <div class="glass-card animate__zoomInUp">
-          <h2>What Makes Us Special</h2>
+        <div class="glass-card-content glass-card-layered animate__zoomInUp">
+          <h3>What Makes Us Special</h3>
           <ul>
             <li>Certified professional instructors</li>
             <li>Small class sizes for personalized attention</li>
@@ -44,6 +44,26 @@ import Navigation from '../components/Navigation.astro';
 <style lang="scss">
   @import '../styles/variables';
   @import '../styles/glassmorphism';
+
+  .about-page {
+      &::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-image: url("/images/istockphoto-998192286-1024x1024.jpg");
+    //   background-image: url("/images/istockphoto-1059205830-1024x1024.jpg");
+      background-size: cover;
+      background-position: top;
+      background-repeat: no-repeat;
+      filter: grayscale(100%);
+      opacity: 0.3;
+      z-index: -1;
+      pointer-events: none;
+    }
+  }
   
   // Animations for about page
   .animate__zoomInDown {
@@ -121,6 +141,15 @@ import Navigation from '../components/Navigation.astro';
   .about-page {
     min-height: 100vh;
     padding: 120px $spacing-md $spacing-xxl;
+
+    h1 {
+font-family: $font-display;
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      color: rgb(0, 0, 0, .25);
+      margin-bottom: $spacing-md;
+      text-transform: uppercase;
+      letter-spacing: 1px;   
+     }
   }
   
   .container {

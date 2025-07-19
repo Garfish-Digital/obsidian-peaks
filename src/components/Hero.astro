@@ -7,27 +7,19 @@ export interface Props {
   ctaLink?: string;
 }
 
-const { 
-  title, 
-  subtitle = "Experience the beauty of frosted glass design meets mountain aesthetics",
-  ctaText = "Explore",
-  ctaLink = "#about"
-} = Astro.props;
 ---
 
 <section class="hero">
   <div class="hero-content">
     <div class="glass-hero-text obsidian-card-layered animate__zoomInDown">
       <h1 class="hero-title">Obsidian<br>Peaks</h1>
-      <p class="hero-subtitle">{subtitle}</p>
-      {ctaText && (
-        <a href={ctaLink} class="glass-button-layered primary cta-button">
-          {ctaText}
+      <p class="hero-subtitle">Snowboarding and Skiing</p>
+        <a href="#features" class="orange-glass-button cta-button">
+          Explore
           {/* <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
           </svg> */}
         </a>
-      )}
     </div>
   </div>
 </section>
@@ -108,7 +100,7 @@ const {
   }
   
   .hero-subtitle {
-    font-size: clamp(0.75rem, 2vw, 0.65rem);
+    font-size: clamp(1.5rem, 2vw, 0.65rem);
     color: rgba(255, 255, 255, 0.8);
     margin-bottom: $spacing-lg;
     line-height: 1.6;
@@ -127,6 +119,9 @@ const {
   @media (max-width: $desktop) {
     .hero {
       padding: 100px $spacing-md $spacing-xl;
+    }
+    .hero-subtitle {
+        font-size: clamp(1rem, 2vw, 0.65rem);
     }
   }
   
