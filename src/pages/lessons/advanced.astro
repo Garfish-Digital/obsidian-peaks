@@ -49,11 +49,11 @@ import Navigation from '../../components/Navigation.astro';
       left: 0;
       right: 0;
       bottom: 0;
-      background-image: url("/images/istockphoto-1300898415-1024x1024.jpg");
+      background-image: url("/images/lessons-advanced.jpg");
       background-size: cover;
       background-position: top;
       background-repeat: no-repeat;
-      filter: grayscale(100%);
+    //   filter: grayscale(100%);
       opacity: 0.3;
       z-index: -1;
       pointer-events: none;
@@ -179,14 +179,23 @@ import Navigation from '../../components/Navigation.astro';
   ul {
     list-style: none;
     padding: 0;
-    
+
     li {
       padding: $spacing-xs 0;
       border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-      
+
       &:before {
         content: '⭐';
         margin-right: $spacing-sm;
+      }
+    }
+  }
+
+  @media (max-width: $tablet) {
+    .advanced-lesson-page {
+      &::before {
+        background-position: center center;
+        opacity: 0.25;
       }
     }
   }

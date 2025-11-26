@@ -62,15 +62,12 @@ export interface Props {
       left: 0;
       right: 0;
       bottom: 0;
-      background-image: url('/images/istockphoto-1358217175-1024x1024.jpg');
+      background-image: url('/images/hero-homepage.jpg');
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
-    //   filter: grayscale(100%);
-        // filter: grayscale(100%) brightness(1.6) contrast(0.6) opacity(0.8);
-          filter: grayscale(100%) brightness(1.3) contrast(0.8) saturate(0);
-            // filter: grayscale(100%) brightness(1.5) contrast(0.7) saturate(0) blur(0.5px);
-      opacity: 0.1;
+        //   filter: grayscale(100%) brightness(1.3) contrast(0.8) saturate(0);
+      opacity: 0.25;
       z-index: -1;
       pointer-events: none;
     }
@@ -138,15 +135,20 @@ export interface Props {
     }
   }
   
-  @media (max-width: $mobile) {
+  @media (max-width: $tablet) {
     .hero {
       padding: 60px $spacing-sm $spacing-md;
+
+      &::before {
+        background-position: center center;
+        opacity: 0.20;
+      }
     }
-    
+
     .glass-hero-text {
       padding: $spacing-md;
     }
-    
+
     .cta-button {
       padding: 12px 24px;
       font-size: 1rem;
