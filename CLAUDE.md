@@ -52,3 +52,4 @@ The project implements a comprehensive glassmorphism design system:
 - Static assets go in `public/` directory
 - Components can be placed in `src/components/` (currently empty but structured for future use)
 - Layouts directory exists for shared page templates
+
